@@ -7,9 +7,9 @@ void StudentService::AddStudent(Student student)
 {
 	bool exists = _studentRepository.StudentExistsByNum(student.GradebookNumber);
 
-	if (!exists)
+	if (exists)
 	{
-		cout << "Студента с шифром " << student.GradebookNumber << " не существует.";
+		cout << "Студент с шифром " << student.GradebookNumber << " уже существует.";
 		return;
 	}
 
