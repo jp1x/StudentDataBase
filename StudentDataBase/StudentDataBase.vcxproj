@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DataBaseIO.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="StudentRepository.cpp" />
+    <ClCompile Include="StudentService.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataBaseIO.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentRepository.h" />
+    <ClInclude Include="StudentService.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
