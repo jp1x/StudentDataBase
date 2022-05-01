@@ -2,7 +2,7 @@
 
 bool StudentRepository::StudentExistsByNum(char* gradeBookNum)
 {
-	return true;
+	return false;
 }
 
 void StudentRepository::AddStudent(Student student)
