@@ -10,5 +10,4 @@ int main()
     Menu menu;
 
     menu.AddStudent();
-
 }

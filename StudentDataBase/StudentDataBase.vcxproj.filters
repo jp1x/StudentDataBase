@@ -47,5 +47,8 @@
     <ClInclude Include="StudentRepository.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

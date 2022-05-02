@@ -15,5 +15,4 @@ public:
 	void AddStudent(Student student);
 	Student GetStudentByNum(char* gradeBookNum);
 	bool StudentExistsByNum(char* gradeBookNum);
-
 };

@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBaseIO.h" />
+    <ClInclude Include="Date.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="StudentRepository.h" />

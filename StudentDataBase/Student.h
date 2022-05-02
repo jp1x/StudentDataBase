@@ -1,4 +1,5 @@
 #pragma once
+#include "Date.h"
 #include <cstring>
 class Student
 {
@@ -6,7 +7,7 @@ public:
     char Surname[20];
     char Name[20];
     char Patronymic[20];
-    //Date Birthday;
+    Date Birthday;
     short UniversityYear;
     char Faculty[9];
     char Department[7];
@@ -20,6 +21,7 @@ public:
 		char* surname,
         char* name,
         char* patronymic,
+        Date birthday,
         short universityYear,
         char* faculty,
         char* department,
@@ -30,6 +32,7 @@ public:
         strcpy_s(Surname, surname);
         strcpy_s(Name, name);
         strcpy_s(Patronymic,  patronymic);
+        Birthday = birthday;
         UniversityYear = universityYear;
         strcpy_s(Faculty,  faculty);
         strcpy_s(Department,  department);
@@ -45,6 +48,7 @@ public:
             nullptr,
             nullptr,
             nullptr,
+            Date::DefaultDate(),
             0,
             nullptr,
             nullptr,
@@ -56,11 +60,17 @@ public:
         return student;
     }
 
+    static bool UniversityYearIsvalid(short univerYear, Date date)
+    {
+        return ((univerYear - date.year) >= 16);
+    }
+
     bool operator == (const Student other)
     {
         return !strcmp(this->Name, other.Name) &&
             !strcmp(this->Surname, other.Surname) &&
             !strcmp(this->Patronymic, other.Patronymic) &&
+            this->Birthday == other.Birthday &&
             this->UniversityYear == other.UniversityYear &&
             !strcmp(this->Faculty, other.Faculty) &&
             !strcmp(this->Department, other.Department) &&

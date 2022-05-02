@@ -1,5 +1,11 @@
 #include "StudentRepository.h"
 
+bool StudentRepository::DatabaseExists()
+{
+	ifstream infile("Students.txt");
+	return infile.good();
+}
+
 bool StudentRepository::StudentExistsByNum(char* gradeBookNum)
 {
 	if (!DatabaseExists())
@@ -21,12 +27,6 @@ bool StudentRepository::StudentExistsByNum(char* gradeBookNum)
 	_dataBase.close();
 
 	return exists;
-}
-
-bool StudentRepository::DatabaseExists()
-{
-	ifstream infile("Students.txt");
-	return infile.good();
 }
 
 void StudentRepository::AddStudent(Student student)

@@ -5,13 +5,14 @@ using namespace std;
 
 void StudentService::AddStudent(Student student)
 {
-	bool exists = _studentRepository.StudentExistsByNum(student.GradebookNumber);
+	bool studentExists = _studentRepository.StudentExistsByNum(student.GradebookNumber);
 
-	if (exists)
+	if (studentExists)
 	{
 		cout << "Студент с шифром " << student.GradebookNumber << " уже существует.";
 		return;
 	}
+
 
 	//TODO
 	//провалидировать остальные поля
