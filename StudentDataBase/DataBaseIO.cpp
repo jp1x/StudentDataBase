@@ -6,15 +6,15 @@ using namespace std;
 
 Student DataBaseIO::InputStudent()
 {
-	char name[20];
 	char surname[20];
+	char name[20];
 	char patronymic[20];
 	short universityYear;
 	char faculty[9];
 	char department[7];
 	char group[11];
-	char gender[9];
 	char gradeBookNumber[9];
+	char gender[9];
 
 	cout << "Фамилия: ";
 	cin.getline(surname, 20);
@@ -44,8 +44,8 @@ Student DataBaseIO::InputStudent()
 	cout << "Пол: ";
 	cin.getline(gender, 9);
 
-	Student person =
-	{
+	Student person
+	(
 		surname,
 		name,
 		patronymic,
@@ -55,7 +55,7 @@ Student DataBaseIO::InputStudent()
 		group,
 		gradeBookNumber,
 		gender
-	};
+	);
 	
 	return person;
 }
