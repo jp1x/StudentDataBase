@@ -15,7 +15,7 @@ public:
     char GradebookNumber[8];
     char Gender[8];
 
-    Student() {};
+    Student() = default;
 
     Student(
 		char* surname,

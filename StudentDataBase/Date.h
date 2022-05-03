@@ -9,10 +9,6 @@ public:
 	unsigned short month;
 	unsigned short year;
 
-	tm Tm;
-	time_t now = time(nullptr);
-	errno_t err = localtime_s(&Tm, &now);
-
 	Date()
 	{
 		day = 0;
@@ -33,8 +29,12 @@ public:
 		return birthday;
 	}
 
-	bool DateIsValid(Date date)
+	static bool DateIsValid(Date date)
 	{
+		tm Tm;
+		time_t now = time(nullptr);
+		localtime_s(&Tm, &now);
+
 		if (date.year > Tm.tm_year + 1900)
 			return false;
 

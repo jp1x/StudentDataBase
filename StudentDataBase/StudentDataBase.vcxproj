@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="DataBaseIO.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="StudentMenu.cpp" />
     <ClCompile Include="StudentRepository.cpp" />
     <ClCompile Include="StudentService.cpp" />
   </ItemGroup>
@@ -30,6 +30,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentMenu.h" />
     <ClInclude Include="StudentRepository.h" />
     <ClInclude Include="StudentService.h" />
   </ItemGroup>
@@ -103,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

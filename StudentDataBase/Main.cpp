@@ -1,15 +1,12 @@
 ﻿#include <iostream>
 #include <Windows.h>
-#include "Menu.h"
+#include "StudentMenu.h"
 
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    Menu menu;
-
-    menu.AddStudent();
-
-    menu.PrintDataBase();
+    StudentMenu menu;
+    menu.UseMenu(menu.GetMenuItems(), 6);
 }

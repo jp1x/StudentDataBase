@@ -14,8 +14,7 @@ private:
 
 public:
 	void AddStudent(Student student);
-	void GetAllStudents();
+	list<Student> GetAllStudents();
 	Student GetStudentByNum(char* gradeBookNum);
 	bool StudentExistsByNum(char* gradeBookNum);
-
 };

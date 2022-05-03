@@ -4,11 +4,14 @@
 
 class Menu
 {
-private:
+protected:
 	DataBaseIO _dataBaseIO;
 	StudentService _studentService;
 
 public:
-	void AddStudent();
-	void PrintDataBase();
+	virtual void UseMenu(const char* MenuItems[], size_t length) = 0;
+	virtual const char** GetMenuItems() = 0;
+
+
+
 };

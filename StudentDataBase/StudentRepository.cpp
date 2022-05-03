@@ -36,23 +36,26 @@ void StudentRepository::AddStudent(Student student)
 	_dataBase.close();
 }
 
-void StudentRepository::GetAllStudents()
+list<Student> StudentRepository::GetAllStudents()
 {
-	//list<Student> Students;
+	list<Student> students;
+	if (!DatabaseExists())
+		return students;
+
+	cout << setfill('=') << setw(120) << "=" << "\n\n";
 
 	Student* person = new Student;
 	_dataBase.open("Students.txt", ios::binary | ios::in);
 	while (_dataBase.peek() != EOF)
 	{
 		_dataBase.read((char*)person, sizeof(Student));
-		//Student temp(*person);
-		//Students.push_back(temp);
-		_dataBaseIO.OutputStudent(*person);
+		Student temp(*person);
+		students.push_back(temp);
 	}
 	_dataBase.close();
 	delete person;
 
-	//return Students;
+	return students;
 }
 
 Student StudentRepository::GetStudentByNum(char* gradeBookNum)

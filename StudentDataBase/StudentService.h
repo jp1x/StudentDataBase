@@ -10,5 +10,5 @@ private:
 
 public:
 	void AddStudent(Student student);
-	void GetAllStudents();
+	list<Student> GetAllStudents();
 };

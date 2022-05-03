@@ -12,6 +12,22 @@ void StudentService::AddStudent(Student student)
 		return;
 	}
 
+	bool dateIsvalid = Date::DateIsValid(student.Birthday);
+
+	if (!dateIsvalid)
+	{
+		cout << "Некорректная дата рождения.\n";
+		return;
+	}
+
+	bool uniYearIsvalid = Student::UniversityYearIsvalid(student.UniversityYear, student.Birthday);
+
+	if (!uniYearIsvalid)
+	{
+		cout << "Студент с возрастом менее 16 лет не может поступить в ВУЗ.\n";
+		return;
+	}
+
 
 	//TODO
 	//провалидировать остальные поля
@@ -19,7 +35,7 @@ void StudentService::AddStudent(Student student)
 	_studentRepository.AddStudent(student);
 }
 
-void StudentService::GetAllStudents()
+list<Student> StudentService::GetAllStudents()
 {
-	_studentRepository.GetAllStudents();
+	return _studentRepository.GetAllStudents();
 }
