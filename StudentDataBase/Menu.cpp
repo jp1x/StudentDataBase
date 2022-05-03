@@ -7,3 +7,8 @@ void Menu::AddStudent()
 	_studentService.AddStudent(student);
 }
 
+void Menu::PrintDataBase()
+{
+	cout << setfill('=') << setw(120) << "=" << "\n";
+	_studentService.GetAllStudents();
+}

@@ -10,4 +10,5 @@ private:
 
 public:
 	void AddStudent();
+	void PrintDataBase();
 };

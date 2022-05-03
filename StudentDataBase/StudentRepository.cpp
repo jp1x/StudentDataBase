@@ -36,6 +36,25 @@ void StudentRepository::AddStudent(Student student)
 	_dataBase.close();
 }
 
+void StudentRepository::GetAllStudents()
+{
+	//list<Student> Students;
+
+	Student* person = new Student;
+	_dataBase.open("Students.txt", ios::binary | ios::in);
+	while (_dataBase.peek() != EOF)
+	{
+		_dataBase.read((char*)person, sizeof(Student));
+		//Student temp(*person);
+		//Students.push_back(temp);
+		_dataBaseIO.OutputStudent(*person);
+	}
+	_dataBase.close();
+	delete person;
+
+	//return Students;
+}
+
 Student StudentRepository::GetStudentByNum(char* gradeBookNum)
 {
 	if (!DatabaseExists())

@@ -12,8 +12,8 @@ public:
     char Faculty[9];
     char Department[7];
     char Group[11];
-    char GradebookNumber[9];
-    char Gender[9];
+    char GradebookNumber[8];
+    char Gender[8];
 
     Student() {};
 
@@ -39,6 +39,20 @@ public:
         strcpy_s(Group,  group);
         strcpy_s(GradebookNumber,  gradebookNumber);
         strcpy_s(Gender, gender);
+    }
+
+    Student(const Student& student)
+    {
+        strcpy_s(Surname, student.Surname);
+        strcpy_s(Name, student.Name);
+        strcpy_s(Patronymic, student.Patronymic);
+        Birthday = student.Birthday;
+        UniversityYear = student.UniversityYear;
+        strcpy_s(Faculty, student.Faculty);
+        strcpy_s(Department, student.Department);
+        strcpy_s(Group, student.Group);
+        strcpy_s(GradebookNumber, student.GradebookNumber);
+        strcpy_s(Gender, student.Gender);
     }
 
     static Student DefaultStudent()

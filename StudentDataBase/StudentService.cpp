@@ -1,4 +1,3 @@
-#include <iostream>
 #include "StudentService.h"
 #include "StudentRepository.h"
 using namespace std;
@@ -9,7 +8,7 @@ void StudentService::AddStudent(Student student)
 
 	if (studentExists)
 	{
-		cout << "Студент с шифром " << student.GradebookNumber << " уже существует.";
+		cout << "Студент с шифром " << student.GradebookNumber << " уже существует.\n";
 		return;
 	}
 
@@ -18,4 +17,9 @@ void StudentService::AddStudent(Student student)
 	//провалидировать остальные поля
 
 	_studentRepository.AddStudent(student);
+}
+
+void StudentService::GetAllStudents()
+{
+	_studentRepository.GetAllStudents();
 }

@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "DataBaseIO.h"
 using namespace std;
 
@@ -13,8 +11,8 @@ Student DataBaseIO::InputStudent()
 	char faculty[9];
 	char department[7];
 	char group[11];
-	char gradeBookNumber[9];
-	char gender[9];
+	char gradeBookNumber[8];
+	char gender[8];
 
 	cout << "Фамилия: ";
 	cin.getline(surname, 20);
@@ -60,10 +58,10 @@ Student DataBaseIO::InputStudent()
 	cin.getline(group, 11);
 
 	cout << "Норер зачетной книжки: ";
-	cin.getline(gradeBookNumber, 9);
+	cin.getline(gradeBookNumber, 8);
 
 	cout << "Пол: ";
-	cin.getline(gender, 9);
+	cin.getline(gender, 8);
 
 
 	Student person
@@ -81,4 +79,27 @@ Student DataBaseIO::InputStudent()
 	);
 	
 	return person;
+}
+
+void DataBaseIO::OutputStudent(/*list<Student> _students*/Student student)
+{	
+	//list<Student>::iterator it;
+	//for (it = _students.begin(); it != _students.end(); ++it)
+	//{
+	cout << "\n";
+	cout << '|' << setfill(' ') << setw(19) << left << student.Surname <<
+		'|' << setfill(' ') << setw(19) << left << student.Name <<
+		'|' << setfill(' ') << setw(19) << left << student.Patronymic <<
+		'|' << setfill(' ') << setw(2) << right << student.Birthday.day <<
+		"." << setfill(' ') << setw(2) << right << student.Birthday.month <<
+		"." << student.Birthday.year <<
+		'|' << setfill(' ') << setw(4) << left << student.UniversityYear <<
+		'|' << setfill(' ') << setw(8) << left << student.Faculty <<
+		'|' << setfill(' ') << setw(6) << left << student.Department <<
+		'|' << setfill(' ') << setw(10) << left << student.Group <<
+		'|' << setfill(' ') << setw(7) << left << student.GradebookNumber <<
+		'|' << setfill(' ') << setw(7) << left << student.Gender << '|' << "\n\n";
+	cout << setfill('=') << setw(120) << "=" << "\n";
+
+	//}
 }

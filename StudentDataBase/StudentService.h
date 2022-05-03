@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "Student.h"
 #include "StudentRepository.h"
 
@@ -9,4 +10,5 @@ private:
 
 public:
 	void AddStudent(Student student);
+	void GetAllStudents();
 };

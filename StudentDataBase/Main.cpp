@@ -10,4 +10,6 @@ int main()
     Menu menu;
 
     menu.AddStudent();
+
+    menu.PrintDataBase();
 }
