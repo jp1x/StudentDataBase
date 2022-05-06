@@ -35,6 +35,19 @@ void StudentService::AddStudent(Student student)
 	_studentRepository.AddStudent(student);
 }
 
+void StudentService::DeleteStudent(list<Student> students)
+{
+	_studentRepository.DeleteStudent(students);
+}
+
+char* StudentService::EnterGradeBookNum()
+{
+	char _gradeBookNum[8];
+	cout << "Введите шифр студента, которого хотите удалить: ";
+	cin.getline(_gradeBookNum, 8);
+	return _gradeBookNum;
+}
+
 list<Student> StudentService::GetAllStudents()
 {
 	return _studentRepository.GetAllStudents();

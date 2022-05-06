@@ -7,15 +7,21 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 	while (true)
 	{
 		cin.clear();
-		switch (_dataBaseIO.InputMenuItemNumber())
+		switch(_dataBaseIO.InputMenuItemNumber())
 		{
-		case 1: 
+		case 1:
 		{
 			Student student = _dataBaseIO.InputStudent();
 			_studentService.AddStudent(student);
 			break;
 		}
 		case 3:
+		{
+			list<Student> students = _studentService.GetAllStudents();
+			_studentService.DeleteStudent(students);
+			break;
+		}
+		case 4:
 		{
 			list<Student> students = _studentService.GetAllStudents();
 			_dataBaseIO.OutputStudent(students);
@@ -31,8 +37,8 @@ const char** StudentMenu::GetMenuItems()
 	{
 		"1. Добавить запись о студенте.",
 		"2. Изменить запись о студенте.",
-		"3. Вывести всех студентов.",
-		"4. Удалить запись о студенте.",
+		"3. Удалить запись о студенте.",
+		"4. Вывести всех студентов.",
 		"5. Меню оценок.",
 		"6. Назад."
 	};

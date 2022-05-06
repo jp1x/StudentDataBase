@@ -67,6 +67,7 @@ Student DataBaseIO::InputStudent()
 
 void DataBaseIO::OutputStudent(list<Student> students)
 {	
+	cout << setfill('=') << setw(120) << "=" << "\n\n";
 	for (const Student& student : students)
 	{
 		cout << '|' << setfill(' ') << setw(19) << left << student.Surname <<

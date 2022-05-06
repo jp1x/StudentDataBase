@@ -40,9 +40,10 @@ list<Student> StudentRepository::GetAllStudents()
 {
 	list<Student> students;
 	if (!DatabaseExists())
+	{
+		cout << "База данных ещё не создана.\n";
 		return students;
-
-	cout << setfill('=') << setw(120) << "=" << "\n\n";
+	}
 
 	Student* person = new Student;
 	_dataBase.open("Students.txt", ios::binary | ios::in);
@@ -77,5 +78,51 @@ Student StudentRepository::GetStudentByNum(char* gradeBookNum)
 	}
 	_dataBase.close();
 
+	cout << "Студента с таким шифром не существует.\n";
 	return Student::DefaultStudent();
+}
+
+list<Student> StudentRepository::GetNewList(list<Student> students, char* gradeBookNum)
+{
+	list<Student>::iterator i = students.begin();
+	while (i != students.end())
+	{
+		if (!strcmp(i->GradebookNumber, gradeBookNum))
+		{
+			students.erase(i);
+			cout << "Студент был успешно удалён.\n";
+			return students;
+		}
+		i++;
+	}
+	cout << "Студента с таким шифром не существует.\n";
+	return students;
+}
+
+void StudentRepository::DeleteStudent(list<Student> students)
+{
+	if (!DatabaseExists())
+	{
+		cout << "База данных ещё не создана.\n";
+		return;
+	}
+
+	char gradeBookNum[8];
+	cout << "Введите шифр студента, которого хотите удалить: ";
+	cin.getline(gradeBookNum, 8);
+
+	list<Student> newList;
+	newList = GetNewList(students, gradeBookNum);
+
+	ReWriteDataBase(newList);
+}
+
+void StudentRepository::ReWriteDataBase(list<Student> students)
+{
+	_dataBase.open("Students.txt", ios::binary | ios::out | ios::trunc);
+	for (const Student& student : students)
+	{
+		_dataBase.write((char*)&student, sizeof(Student));
+	}
+	_dataBase.close();
 }

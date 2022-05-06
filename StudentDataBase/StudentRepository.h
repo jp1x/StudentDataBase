@@ -14,7 +14,10 @@ private:
 
 public:
 	void AddStudent(Student student);
+	void DeleteStudent(list<Student> students);
+	list<Student> GetNewList(list<Student> students, char* gradeBookNum);
 	list<Student> GetAllStudents();
+	void ReWriteDataBase(list<Student> students);
 	Student GetStudentByNum(char* gradeBookNum);
 	bool StudentExistsByNum(char* gradeBookNum);
 };

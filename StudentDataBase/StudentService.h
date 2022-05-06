@@ -10,5 +10,7 @@ private:
 
 public:
 	void AddStudent(Student student);
+	void DeleteStudent(list<Student> students);
+	char* EnterGradeBookNum();
 	list<Student> GetAllStudents();
 };
