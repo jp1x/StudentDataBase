@@ -34,7 +34,35 @@ void StudentRepository::AddStudent(Student student)
 	_dataBase.open("Students.txt", ios::binary | ios::out | ios::app);
 	_dataBase.write((char*)&student, sizeof(Student));
 	_dataBase.close();
+	cout << "Студент был успешно добавлен.\n";
 }
+
+//void StudentRepository::UpdateStudent(list<Student> students)
+//{
+//	if (!DatabaseExists())
+//	{
+//		cout << "База данных ещё не создана.\n";
+//		return;
+//	}
+//
+//	char gradeBookNum[8];
+//	cout << "Введите шифр студента, которого хотите обновить: ";
+//	cin.getline(gradeBookNum, 8);
+//	cin.clear();
+//	cin.ignore(cin.rdbuf()->in_avail());
+//	_flushall();
+//
+//	list<Student> newList;
+//	newList = GetNewList(students, gradeBookNum);
+//
+//	Student newStudent = _dataBaseIO.InputStudent();
+//
+//	newList.push_back(newStudent);
+//
+//	ReWriteDataBase(newList);
+//
+//	cout << "Студент был успешно изменён.\n";
+//}
 
 list<Student> StudentRepository::GetAllStudents()
 {
@@ -110,6 +138,9 @@ void StudentRepository::DeleteStudent(list<Student> students)
 	char gradeBookNum[8];
 	cout << "Введите шифр студента, которого хотите удалить: ";
 	cin.getline(gradeBookNum, 8);
+	cin.clear();
+	cin.ignore(cin.rdbuf()->in_avail());
+	_flushall();
 
 	list<Student> newList;
 	newList = GetNewList(students, gradeBookNum);

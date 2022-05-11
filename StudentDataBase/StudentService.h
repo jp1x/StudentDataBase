@@ -10,7 +10,8 @@ private:
 
 public:
 	void AddStudent(Student student);
+	//void UpdateStudent(list<Student> students);
 	void DeleteStudent(list<Student> students);
-	char* EnterGradeBookNum();
 	list<Student> GetAllStudents();
+	int ExitMenu();
 };

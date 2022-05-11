@@ -1,4 +1,5 @@
 #include "DataBaseIO.h"
+#define BufClean cin.clear(); cin.ignore(cin.rdbuf()->in_avail()); _flushall()
 using namespace std;
 
 Student DataBaseIO::InputStudent()
@@ -16,37 +17,44 @@ Student DataBaseIO::InputStudent()
 
 	cout << "Фамилия: ";
 	cin.getline(surname, 20);
+	BufClean;
 
 	cout << "Имя: ";
 	cin.getline(name, 20);
+	BufClean;
 
 	cout << "Отчество: ";
 	cin.getline(patronymic, 20);
+	BufClean;
 
 	cout << "Дата рождения(DD MM YYYY): ";
 	cin >> dd >> mm >> yyyy;
-	while (getchar() != '\n');
 	Date birthday(dd, mm, yyyy);
+	BufClean;
 
 	cout << "Год поступления: ";
 	cin >> universityYear;
-	while (getchar() != '\n');
+	BufClean;
 
 	cout << "Факультет: ";
 	cin.getline(faculty, 9);
+	BufClean;
 
 	cout << "Кафедра: ";
 	cin.getline(department, 7);
+	BufClean;
 
 	cout << "Группа: ";
 	cin.getline(group, 11);
+	BufClean;
 
-	cout << "Норер зачетной книжки: ";
+	cout << "Номер зачетной книжки: ";
 	cin.getline(gradeBookNumber, 8);
+	BufClean;
 
 	cout << "Пол: ";
 	cin.getline(gender, 8);
-
+	BufClean;
 
 	Student person
 	(
@@ -67,7 +75,7 @@ Student DataBaseIO::InputStudent()
 
 void DataBaseIO::OutputStudent(list<Student> students)
 {	
-	cout << setfill('=') << setw(120) << "=" << "\n\n";
+	cout << setfill('=') << setw(120) << "=" << "\n";
 	for (const Student& student : students)
 	{
 		cout << '|' << setfill(' ') << setw(19) << left << student.Surname <<
@@ -81,8 +89,8 @@ void DataBaseIO::OutputStudent(list<Student> students)
 			'|' << setfill(' ') << setw(6) << left << student.Department <<
 			'|' << setfill(' ') << setw(10) << left << student.Group <<
 			'|' << setfill(' ') << setw(7) << left << student.GradebookNumber <<
-			'|' << setfill(' ') << setw(7) << left << student.Gender << '|' << "\n\n";
-		cout << setfill('=') << setw(120) << "=" << "\n\n";
+			'|' << setfill(' ') << setw(7) << left << student.Gender << '|' << "\n";
+		cout << setfill('=') << setw(120) << "=" << "\n";
 	}
 }
 

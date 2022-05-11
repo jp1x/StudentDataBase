@@ -14,6 +14,7 @@ private:
 
 public:
 	void AddStudent(Student student);
+	//void UpdateStudent(list<Student> students);
 	void DeleteStudent(list<Student> students);
 	list<Student> GetNewList(list<Student> students, char* gradeBookNum);
 	list<Student> GetAllStudents();

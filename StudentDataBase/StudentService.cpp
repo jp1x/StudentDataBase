@@ -40,15 +40,18 @@ void StudentService::DeleteStudent(list<Student> students)
 	_studentRepository.DeleteStudent(students);
 }
 
-char* StudentService::EnterGradeBookNum()
-{
-	char _gradeBookNum[8];
-	cout << "Введите шифр студента, которого хотите удалить: ";
-	cin.getline(_gradeBookNum, 8);
-	return _gradeBookNum;
-}
+//void StudentService::UpdateStudent(list<Student> students)
+//{
+//	_studentRepository.UpdateStudent(students);
+//}
 
 list<Student> StudentService::GetAllStudents()
 {
 	return _studentRepository.GetAllStudents();
+}
+
+int StudentService::ExitMenu()
+{
+	cout << "Выход из программы...\n";
+	return 0;
 }
