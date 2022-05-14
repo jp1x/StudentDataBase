@@ -1,8 +1,15 @@
 #pragma once
 #include "Date.h"
 #include <cstring>
+
 class Student
 {
+    const char* incorrectSimbols[27] = { "/", ".", ",", "[", "]", "(", ")",
+        "{", "}", "`", "!", "@", "#", "¹", "$", ";", "%", "^", ":", "&",
+        "?", "*", "|", "<", ">", "+", "=" };
+    const char* incorrectSimbolsAndNums[37] = { "/", ".", ",", "[", "]", "(", ")",
+        "{", "}", "`", "!", "@", "#", "¹", "$", ";", "%", "^", ":", "&",
+        "?", "*", "|", "<", ">", "+", "=", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 public:
     char Surname[20];
     char Name[20];
@@ -74,10 +81,49 @@ public:
         return student;
     }
 
-    static bool UniversityYearIsvalid(short univerYear, Date date)
+    static bool UniversityYearIsValid(short univerYear, Date date)
     {
-        return ((univerYear - date.year) >= 16);
+        tm Tm;
+        time_t now = time(nullptr);
+        localtime_s(&Tm, &now);
+
+        if (!((univerYear - date.year) >= 16))
+            return false;
+
+        if ((univerYear > (Tm.tm_year + 1900)))
+            return false;
+
+        return true;
     }
+
+    bool InitialsAreValid(char* value)
+    {
+        for (short i = 0; i < 20; i++)
+        {
+            for (short j = 0; j < 37; j++)
+            {
+                if (value[i] == *incorrectSimbolsAndNums[j])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool CharFieldIsValid(char* value, short length)
+    {
+        for (short i = 0; i < length; i++)
+        {
+            for (short j = 0; j < 27; j++)
+            {
+                if (value[i] == *incorrectSimbols[j])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+    
 
     bool operator == (const Student other)
     {
@@ -96,5 +142,44 @@ public:
     bool operator != (const Student other)
     {
         return !(*this == other);
+    }
+};
+
+class Subject
+{
+public:
+    char title[30];
+    short mark;
+
+    Subject()
+    {
+        *title = '-';
+        mark = 0;
+    }
+};
+
+class Education
+{
+public:
+    char GradebookNumber[8];
+    short SessionNumber;
+    short SubjectAmount;
+    Subject Subjects[10];
+
+    Education() = default;
+
+    Education(
+        char* gradebookNumber,
+        short sessionNumber,
+        short subjectAmount,
+        Subject subjects[10])
+    {
+        strcpy_s(GradebookNumber, gradebookNumber);
+        SessionNumber = sessionNumber;
+        SubjectAmount = subjectAmount;
+        for (short i = 0; i < 10; i++)
+        {
+            Subjects[i] = subjects[i];
+        }
     }
 };

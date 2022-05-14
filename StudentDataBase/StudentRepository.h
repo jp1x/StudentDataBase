@@ -10,15 +10,16 @@ class StudentRepository
 private:
 	fstream _dataBase;
 	DataBaseIO _dataBaseIO;
-	bool DatabaseExists();
 
 public:
+	bool DatabaseExists();
 	void AddStudent(Student student);
 	//void UpdateStudent(list<Student> students);
-	void DeleteStudent(list<Student> students);
-	list<Student> GetNewList(list<Student> students, char* gradeBookNum);
+	void DeleteStudent(char* gradebookNum);
+	list<Student> RemoveStudentFromList(
+		list<Student> students, char* gradebookNum);
 	list<Student> GetAllStudents();
 	void ReWriteDataBase(list<Student> students);
-	Student GetStudentByNum(char* gradeBookNum);
-	bool StudentExistsByNum(char* gradeBookNum);
+	Student GetStudentByNum(char* gradebookNum);
+	bool StudentExistsByNum(char* gradebookNum);
 };

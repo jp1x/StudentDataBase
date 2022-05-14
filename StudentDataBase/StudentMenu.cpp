@@ -2,42 +2,56 @@
 
 void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 {
-	_dataBaseIO.PrintMenuItems(menuItems, length);
-	
-	short program = 1;
-	while (program)
+	int menuItemNumber;
+	while (true)
 	{
 		cin.clear();
-		switch(_dataBaseIO.InputMenuItemNumber())
+		system("cls");
+		_dataBaseIO.PrintMenuItems(menuItems, length);
+		menuItemNumber = _dataBaseIO.InputMenuItemNumber();
+		system("cls");
+
+		switch(menuItemNumber)
 		{
 		case 1:
 		{
 			Student student = _dataBaseIO.InputStudent();
 			_studentService.AddStudent(student);
+			cout << "Для продолжения нажмите любую кнопку...\n";
+			getchar();
 			break;
 		}
 		case 2:
 		{
+			char* gradebookNum = _dataBaseIO.InputGradebookNum();
 			system("cls");
 			break;
 		}
 		case 3:
 		{
-			list<Student> students = _studentService.GetAllStudents();
-			_studentService.DeleteStudent(students);
+			char* gradebookNum = _dataBaseIO.InputGradebookNum();
+			_studentService.DeleteStudent(gradebookNum);
+			cout << "Для продолжения нажмите любую кнопку...\n";
+			getchar();
 			break;
 		}
 		case 4:
 		{
 			list<Student> students = _studentService.GetAllStudents();
 			_dataBaseIO.OutputStudent(students);
+			cout << "Для продолжения нажмите любую кнопку...\n";
+			getchar();
+			break;
+		}
+		case 5:
+		{
+			gradeMenu.UseMenu(gradeMenu.GetMenuItems(), 5);
 			break;
 		}
 		case 6:
 		{
-			program = 0;
 			_studentService.ExitMenu();
-			break;
+			return;
 		}
 		}
 	}
@@ -52,11 +66,13 @@ const char** StudentMenu::GetMenuItems()
 		"3. Удалить запись о студенте.",
 		"4. Вывести всех студентов.",
 		"5. Меню оценок.",
-		"6. Выход."
+		"6. Выход из программы."
 	};
 
 	return Menu;
 }
+
+
 
 //const char** StudentMenu::GetChangeMenuItems()
 //{

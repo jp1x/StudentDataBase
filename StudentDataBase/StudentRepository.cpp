@@ -6,7 +6,7 @@ bool StudentRepository::DatabaseExists()
 	return infile.good();
 }
 
-bool StudentRepository::StudentExistsByNum(char* gradeBookNum)
+bool StudentRepository::StudentExistsByNum(char* gradebookNum)
 {
 	if (!DatabaseExists())
 		return false;
@@ -18,7 +18,7 @@ bool StudentRepository::StudentExistsByNum(char* gradeBookNum)
 	while (!_dataBase.eof())
 	{
 		_dataBase.read((char*)&student, sizeof(student));
-		if (!strcmp(student.GradebookNumber, gradeBookNum))
+		if (!strcmp(student.GradebookNumber, gradebookNum))
 		{
 			exists = true;
 			break;
@@ -45,15 +45,15 @@ void StudentRepository::AddStudent(Student student)
 //		return;
 //	}
 //
-//	char gradeBookNum[8];
+//	char gradebookNum[8];
 //	cout << "Введите шифр студента, которого хотите обновить: ";
-//	cin.getline(gradeBookNum, 8);
+//	cin.getline(gradebookNum, 8);
 //	cin.clear();
 //	cin.ignore(cin.rdbuf()->in_avail());
 //	_flushall();
 //
 //	list<Student> newList;
-//	newList = GetNewList(students, gradeBookNum);
+//	newList = GetNewList(students, gradebookNum);
 //
 //	Student newStudent = _dataBaseIO.InputStudent();
 //
@@ -67,11 +67,6 @@ void StudentRepository::AddStudent(Student student)
 list<Student> StudentRepository::GetAllStudents()
 {
 	list<Student> students;
-	if (!DatabaseExists())
-	{
-		cout << "База данных ещё не создана.\n";
-		return students;
-	}
 
 	Student* person = new Student;
 	_dataBase.open("Students.txt", ios::binary | ios::in);
@@ -87,7 +82,7 @@ list<Student> StudentRepository::GetAllStudents()
 	return students;
 }
 
-Student StudentRepository::GetStudentByNum(char* gradeBookNum)
+Student StudentRepository::GetStudentByNum(char* gradebookNum)
 {
 	if (!DatabaseExists())
 		return Student::DefaultStudent();
@@ -98,7 +93,7 @@ Student StudentRepository::GetStudentByNum(char* gradeBookNum)
 	while (!_dataBase.eof())
 	{
 		_dataBase.read((char*)&student, sizeof(student));
-		if (!strcmp(student.GradebookNumber, gradeBookNum))
+		if (!strcmp(student.GradebookNumber, gradebookNum))
 		{
 			_dataBase.close();
 			return student;
@@ -110,12 +105,12 @@ Student StudentRepository::GetStudentByNum(char* gradeBookNum)
 	return Student::DefaultStudent();
 }
 
-list<Student> StudentRepository::GetNewList(list<Student> students, char* gradeBookNum)
+list<Student> StudentRepository::RemoveStudentFromList(list<Student> students, char* gradebookNum)
 {
 	list<Student>::iterator i = students.begin();
 	while (i != students.end())
 	{
-		if (!strcmp(i->GradebookNumber, gradeBookNum))
+		if (!strcmp(i->GradebookNumber, gradebookNum))
 		{
 			students.erase(i);
 			cout << "Студент был успешно удалён.\n";
@@ -123,11 +118,10 @@ list<Student> StudentRepository::GetNewList(list<Student> students, char* gradeB
 		}
 		i++;
 	}
-	cout << "Студента с таким шифром не существует.\n";
 	return students;
 }
 
-void StudentRepository::DeleteStudent(list<Student> students)
+void StudentRepository::DeleteStudent(char* gradebookNum)
 {
 	if (!DatabaseExists())
 	{
@@ -135,15 +129,9 @@ void StudentRepository::DeleteStudent(list<Student> students)
 		return;
 	}
 
-	char gradeBookNum[8];
-	cout << "Введите шифр студента, которого хотите удалить: ";
-	cin.getline(gradeBookNum, 8);
-	cin.clear();
-	cin.ignore(cin.rdbuf()->in_avail());
-	_flushall();
+	list<Student> students = GetAllStudents();
 
-	list<Student> newList;
-	newList = GetNewList(students, gradeBookNum);
+	list<Student> newList = RemoveStudentFromList(students, gradebookNum);
 
 	ReWriteDataBase(newList);
 }

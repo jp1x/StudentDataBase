@@ -30,6 +30,15 @@
     <ClCompile Include="StudentMenu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="GradeRepository.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="GradeService.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="GradeMenu.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBaseIO.h">
@@ -51,6 +60,15 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="StudentMenu.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GradeService.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GradeRepository.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GradeMenu.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

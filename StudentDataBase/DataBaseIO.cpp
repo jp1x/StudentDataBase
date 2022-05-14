@@ -12,7 +12,7 @@ Student DataBaseIO::InputStudent()
 	char faculty[9];
 	char department[7];
 	char group[11];
-	char gradeBookNumber[8];
+	char gradebookNumber[8];
 	char gender[8];
 
 	cout << "Фамилия: ";
@@ -49,7 +49,7 @@ Student DataBaseIO::InputStudent()
 	BufClean;
 
 	cout << "Номер зачетной книжки: ";
-	cin.getline(gradeBookNumber, 8);
+	cin.getline(gradebookNumber, 8);
 	BufClean;
 
 	cout << "Пол: ";
@@ -66,11 +66,65 @@ Student DataBaseIO::InputStudent()
 		faculty,
 		department,
 		group,
-		gradeBookNumber,
+		gradebookNumber,
 		gender
 	);
 	
 	return person;
+}
+
+char* DataBaseIO::InputGradebookNum()
+{
+	char gradebookNumber[8];
+	cout << "Введите номер зачетной книжки студента: ";
+	cin.getline(gradebookNumber, 8);
+	BufClean;
+
+	return gradebookNumber;
+}
+
+Education DataBaseIO::InputGrades()
+{
+	char gradebookNumber[8];
+	short sessionNumber;
+	short subjectsAmount;
+	
+	cout << "Номер зачетной книжки: ";
+	cin.getline(gradebookNumber, 8);
+	BufClean;
+
+	cout << "Номер сессии: ";
+	cin >> sessionNumber;
+	BufClean;
+
+	cout << "Количество дисциплин: ";
+	cin >> subjectsAmount;
+	BufClean;
+
+	Subject* Subjects = new Subject[subjectsAmount];
+
+	for (short i = 0; i < subjectsAmount; i++)
+	{
+		cout << "Дисциплина " << i + 1 << ": ";
+		cin.getline(Subjects->title, 30);
+		BufClean;
+
+		cout << "Оценка: ";
+		cin >> Subjects->mark;
+		BufClean;
+	}
+
+	Education session
+	(
+		gradebookNumber,
+		sessionNumber,
+		subjectsAmount,
+		Subjects
+	);
+
+	delete[] Subjects;
+
+	return session;
 }
 
 void DataBaseIO::OutputStudent(list<Student> students)
@@ -99,6 +153,14 @@ void DataBaseIO::PrintMenuItems(const char* menuItems[], size_t length)
 	for (size_t i = 0; i < length; i++)
 	{
 		cout << menuItems[i] << "\n";
+	}
+}
+
+void DataBaseIO::PrintGradeMenuItems(const char* gradeMenuItems[], size_t length)
+{
+	for (size_t i = 0; i < length; i++)
+	{
+		cout << gradeMenuItems[i] << "\n";
 	}
 }
 
