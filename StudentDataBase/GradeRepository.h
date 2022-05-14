@@ -12,5 +12,6 @@ class GradeRepository
 
 public:
 	void AddGrade(Education session);
+	list<Education> GetAllGrades();
 	bool StudentExistsByNum(char* gradebookNum, short sessionNum);
 };

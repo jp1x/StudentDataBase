@@ -156,7 +156,6 @@ public:
         *Title = '-';
         Mark = 0;
     }
-
 };
 
 class Education
@@ -179,12 +178,12 @@ public:
         char* gradebookNumber,
         short sessionNumber,
         short subjectAmount,
-        Subject subjects[10])
+        Subject subjects[])
     {
         strcpy_s(GradebookNumber, gradebookNumber);
         SessionNumber = sessionNumber;
         SubjectsAmount = subjectAmount;
-        for (short i = 0; i < 10; i++)
+        for (short i = 0; i < subjectAmount; i++)
         {
             Subjects[i] = subjects[i];
         }
@@ -216,5 +215,63 @@ public:
         }
 
         return true;
+    }
+
+    static float CountFives(Education session)
+    {
+        short countFives = 0;
+        for (short i = 0; i < session.SubjectsAmount; i++)
+        {
+            if (session.Subjects[i].Mark == 5)
+                countFives++;
+        }
+        return countFives;
+    }
+
+    static float CountFours(Education session)
+    {
+        short countFours = 0;
+        for (short i = 0; i < session.SubjectsAmount; i++)
+        {
+            if (session.Subjects[i].Mark == 4)
+                countFours++;
+        }
+        return countFours;
+    }
+
+    static float CountThrees(Education session)
+    {
+        short countThrees = 0;
+        for (short i = 0; i < session.SubjectsAmount; i++)
+        {
+            if (session.Subjects[i].Mark == 3)
+                countThrees++;
+        }
+        return countThrees;
+    }
+
+    static float CountTwos(Education session)
+    {
+        short countTwos = 0;
+        for (short i = 0; i < session.SubjectsAmount; i++)
+        {
+            if (session.Subjects[i].Mark == 2)
+                countTwos++;
+        }
+        return countTwos;
+    }
+
+    static float CountMarks(Education session)
+    {
+        return CountFives(session) + CountFours(session) +
+            CountThrees(session) + CountTwos(session);
+    }
+
+    static float AverageMark(Education session)
+    {
+        float averageMark = 0;
+        averageMark = (CountFives(session) * 5 + CountFours(session) * 4
+            + CountThrees(session) * 3 + CountTwos(session) * 2) / (CountMarks(session));
+        return averageMark;
     }
 };

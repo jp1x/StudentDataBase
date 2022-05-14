@@ -2,17 +2,23 @@
 
 void GradeMenu::UseMenu(const char* gradeMenuItems[], size_t length)
 {
-	_dataBaseIO.PrintGradeMenuItems(gradeMenuItems, length);
-
+	int menuItemNumber;
 	while (true)
 	{
 		cin.clear();
-		switch (_dataBaseIO.InputMenuItemNumber())
+		system("cls");
+		_dataBaseIO.PrintGradeMenuItems(gradeMenuItems, length);
+		menuItemNumber = _dataBaseIO.InputMenuItemNumber();
+		system("cls");
+
+		switch(menuItemNumber)
 		{
 		case 1:
 		{
 			Education session = _dataBaseIO.InputGrades();
 			_gradeService.AddGrade(session);
+			cout << "Для продолжения нажмите любую кнопку...\n";
+			getchar();
 			break;
 		}
 		case 2:
@@ -22,13 +28,13 @@ void GradeMenu::UseMenu(const char* gradeMenuItems[], size_t length)
 		}
 		case 3:
 		{
-
+			list<Education> grades = _gradeService.GetAllGrades();
+			_dataBaseIO.OutputGrade(grades);
+			cout << "Для продолжения нажмите любую кнопку...\n";
+			getchar();
+			break;
 		}
 		case 4:
-		{
-
-		}
-		case 5:
 		{
 			return;
 		}
@@ -42,9 +48,8 @@ const char** GradeMenu::GetMenuItems()
 	{
 		"1. Добавить оценки студента.",
 		"2. Изменить оценки студента.",
-		"3. Удалить оценки студента.",
-		"4. Вывести всех студентов.",
-		"5. Назад."
+		"3. Вывести оценки всех студентов.",
+		"4. Назад."
 	};
 
 	return gradeMenu;

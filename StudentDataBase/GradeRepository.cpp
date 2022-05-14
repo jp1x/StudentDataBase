@@ -10,9 +10,9 @@ bool GradeRepository::GradeDatabaseExists()
 void GradeRepository::AddGrade(Education session)
 {
 	_gradeDataBase.open("Grades.txt", ios::binary | ios::out | ios::app);
-	_gradeDataBase.write((char*)&session, sizeof(Education));
+	_gradeDataBase.write((char*)&session, sizeof(session));
 	_gradeDataBase.close();
-	cout << "ќценки студента были успешно добавлен.\n";
+	cout << "ќценки студента были успешно добавлены.\n";
 }
 
 bool GradeRepository::StudentExistsByNum(char* gradebookNum, short sessionNum)
@@ -39,4 +39,23 @@ bool GradeRepository::StudentExistsByNum(char* gradebookNum, short sessionNum)
 	_gradeDataBase.close();
 
 	return exists;
+}
+
+list<Education> GradeRepository::GetAllGrades()
+{
+	list<Education> grades;
+
+	Education* grade = new Education;
+
+	_gradeDataBase.open("Grades.txt", ios::binary | ios::in);
+	while (_gradeDataBase.peek() != EOF)
+	{
+		_gradeDataBase.read((char*)grade, sizeof(Education));
+		Education temp(*grade);
+		grades.push_back(temp);
+	}
+	_gradeDataBase.close();
+	delete grade;
+
+	return grades;
 }

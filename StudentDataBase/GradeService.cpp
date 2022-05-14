@@ -42,3 +42,8 @@ void GradeService::AddGrade(Education session)
 
 	_gradeRepository.AddGrade(session);
 }
+
+list<Education> GradeService::GetAllGrades()
+{
+	return _gradeRepository.GetAllGrades();
+}

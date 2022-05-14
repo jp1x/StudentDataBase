@@ -113,9 +113,3 @@ list<Student> StudentService::GetAllStudents()
 {
 	return _studentRepository.GetAllStudents();
 }
-
-int StudentService::ExitMenu()
-{
-	cout << "Выход из программы...\n";
-	return 0;
-}

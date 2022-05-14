@@ -95,12 +95,14 @@ Education DataBaseIO::InputGrades()
 
 	cout << "Номер сессии: ";
 	cin >> sessionNumber;
+	while (getchar() != '\n');
 	BufClean;
 
 	while (true)
 	{
 		cout << "Количество дисциплин: ";
 		cin >> subjectsAmount;
+		while (getchar() != '\n');
 		BufClean;
 
 		if (!(subjectsAmount < 1 || subjectsAmount > 10))
@@ -114,7 +116,7 @@ Education DataBaseIO::InputGrades()
 	for (short i = 0; i < subjectsAmount; i++)
 	{
 		cout << "Дисциплина " << i + 1 << ": ";
-		cin.getline(Subjects->Title, 30);
+		cin.getline(Subjects[i].Title, 30);
 		BufClean;
 
 		cout << "(2) - незачёт\n";
@@ -123,7 +125,8 @@ Education DataBaseIO::InputGrades()
 		cout << "(5) - отлично\n";
 
 		cout << "Оценка: ";
-		cin >> Subjects->Mark;
+		cin >> Subjects[i].Mark;
+		while (getchar() != '\n');
 		BufClean;
 	}
 
@@ -158,6 +161,23 @@ void DataBaseIO::OutputStudent(list<Student> students)
 			'|' << setfill(' ') << setw(7) << left << student.GradebookNumber <<
 			'|' << setfill(' ') << setw(7) << left << student.Gender << '|' << "\n";
 		cout << setfill('=') << setw(120) << "=" << "\n";
+	}
+}
+
+void DataBaseIO::OutputGrade(list<Education> grades)
+{
+	cout << setfill('=') << setw(69) << "=" << "\n";
+	for (const Education& grade : grades)
+	{
+		cout << '|' << setfill(' ') << setw(8) << left << grade.GradebookNumber <<
+			'|' << "Сессия " << grade.SessionNumber <<
+			'|' << "[5]: " << setfill(' ') << setw(2) << left << grade.CountFives(grade) <<
+			'|' << "[4]: " << setfill(' ') << setw(2) << left << grade.CountFours(grade) <<
+			'|' << "[3]: " << setfill(' ') << setw(2) << left << grade.CountThrees(grade) <<
+			'|' << "[2]: " << setfill(' ') << setw(2) << left << grade.CountTwos(grade) <<
+			'|' << "Средний балл: " << setfill(' ') << setw(3) << left <<
+			grade.AverageMark(grade) << '|' << "\n";
+		cout << setfill('=') << setw(69) << "=" << "\n";
 	}
 }
 

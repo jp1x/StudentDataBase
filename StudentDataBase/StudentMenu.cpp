@@ -45,12 +45,12 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 5:
 		{
-			gradeMenu.UseMenu(gradeMenu.GetMenuItems(), 5);
+			gradeMenu.UseMenu(gradeMenu.GetMenuItems(), 4);
 			break;
 		}
 		case 6:
 		{
-			_studentService.ExitMenu();
+			cout << "Выход из программы...\n";
 			return;
 		}
 		}

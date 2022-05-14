@@ -13,5 +13,4 @@ public:
 	//void UpdateStudent(list<Student> students);
 	void DeleteStudent(char* gradebookNum);
 	list<Student> GetAllStudents();
-	int ExitMenu();
 };

@@ -4,8 +4,8 @@
 
 class GradeService
 {
-	GradeRepository _gradeRepository;
-
 public:
+	GradeRepository _gradeRepository;
 	void AddGrade(Education session);
+	list<Education> GetAllGrades();
 };
