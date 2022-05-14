@@ -148,22 +148,29 @@ public:
 class Subject
 {
 public:
-    char title[30];
-    short mark;
+    char Title[30];
+    short Mark;
 
     Subject()
     {
-        *title = '-';
-        mark = 0;
+        *Title = '-';
+        Mark = 0;
     }
+
 };
 
 class Education
 {
+    const char* incorrectSimbols[27] = { "/", ".", ",", "[", "]", "(", ")",
+        "{", "}", "`", "!", "@", "#", "¹", "$", ";", "%", "^", ":", "&",
+        "?", "*", "|", "<", ">", "+", "=" };
+    const char* incorrectSimbolsAndNums[37] = { "/", ".", ",", "[", "]", "(", ")",
+        "{", "}", "`", "!", "@", "#", "¹", "$", ";", "%", "^", ":", "&",
+        "?", "*", "|", "<", ">", "+", "=", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 public:
     char GradebookNumber[8];
     short SessionNumber;
-    short SubjectAmount;
+    short SubjectsAmount;
     Subject Subjects[10];
 
     Education() = default;
@@ -176,10 +183,38 @@ public:
     {
         strcpy_s(GradebookNumber, gradebookNumber);
         SessionNumber = sessionNumber;
-        SubjectAmount = subjectAmount;
+        SubjectsAmount = subjectAmount;
         for (short i = 0; i < 10; i++)
         {
             Subjects[i] = subjects[i];
         }
+    }
+
+    bool SubjectIsValid(char* title)
+    {
+        for (short i = 0; i < 30; i++)
+        {
+            for (short j = 0; j < 37; j++)
+            {
+                if (title[i] == *incorrectSimbolsAndNums[j])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool GradebookNumberIsValid(char* gradebookNum)
+    {
+        for (short i = 0; i < 8; i++)
+        {
+            for (short j = 0; j < 27; j++)
+            {
+                if (gradebookNum[i] == *incorrectSimbols[j])
+                    return false;
+            }
+        }
+
+        return true;
     }
 };

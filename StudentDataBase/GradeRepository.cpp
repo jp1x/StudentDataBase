@@ -15,7 +15,7 @@ void GradeRepository::AddGrade(Education session)
 	cout << "ќценки студента были успешно добавлен.\n";
 }
 
-bool GradeRepository::StudentExistsByNum(char* gradebookNum)
+bool GradeRepository::StudentExistsByNum(char* gradebookNum, short sessionNum)
 {
 	if (!GradeDatabaseExists())
 		return false;
@@ -29,8 +29,11 @@ bool GradeRepository::StudentExistsByNum(char* gradebookNum)
 		_gradeDataBase.read((char*)&session, sizeof(session));
 		if (!strcmp(session.GradebookNumber, gradebookNum))
 		{
-			exists = true;
-			break;
+			if (session.SessionNumber == sessionNum)
+			{
+				exists = true;
+				break;
+			}
 		}
 	}
 	_gradeDataBase.close();

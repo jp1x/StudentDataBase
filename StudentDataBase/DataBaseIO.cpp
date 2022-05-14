@@ -1,5 +1,5 @@
 #include "DataBaseIO.h"
-#define BufClean cin.clear(); cin.ignore(cin.rdbuf()->in_avail()); _flushall()
+#define BufClean cin.clear(); cin.ignore(cin.rdbuf()->in_avail()); _flushall();
 using namespace std;
 
 Student DataBaseIO::InputStudent()
@@ -97,20 +97,33 @@ Education DataBaseIO::InputGrades()
 	cin >> sessionNumber;
 	BufClean;
 
-	cout << "Количество дисциплин: ";
-	cin >> subjectsAmount;
-	BufClean;
+	while (true)
+	{
+		cout << "Количество дисциплин: ";
+		cin >> subjectsAmount;
+		BufClean;
+
+		if (!(subjectsAmount < 1 || subjectsAmount > 10))
+			break;
+
+		cout << "Неверное количество дисциплин. Макс. количество - 10\n";
+	}
 
 	Subject* Subjects = new Subject[subjectsAmount];
 
 	for (short i = 0; i < subjectsAmount; i++)
 	{
 		cout << "Дисциплина " << i + 1 << ": ";
-		cin.getline(Subjects->title, 30);
+		cin.getline(Subjects->Title, 30);
 		BufClean;
 
+		cout << "(2) - незачёт\n";
+		cout << "(3) - удовлетворительно\n";
+		cout << "(4) - хорошо\n";
+		cout << "(5) - отлично\n";
+
 		cout << "Оценка: ";
-		cin >> Subjects->mark;
+		cin >> Subjects->Mark;
 		BufClean;
 	}
 
