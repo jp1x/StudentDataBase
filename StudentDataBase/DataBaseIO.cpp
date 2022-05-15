@@ -145,6 +145,11 @@ Education DataBaseIO::InputGrades()
 
 void DataBaseIO::OutputStudent(list<Student> students)
 {	
+	if (students.empty())
+	{
+		cout << "База данных пуста.\n";
+		return;
+	}
 	cout << setfill('=') << setw(120) << "=" << "\n";
 	for (const Student& student : students)
 	{
@@ -166,6 +171,11 @@ void DataBaseIO::OutputStudent(list<Student> students)
 
 void DataBaseIO::OutputGrade(list<Education> grades)
 {
+	if (grades.empty())
+	{
+		cout << "База данных с оценками пуста.\n";
+		return;
+	}
 	cout << setfill('=') << setw(70) << "=" << "\n";
 	for (const Education& grade : grades)
 	{

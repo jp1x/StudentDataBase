@@ -94,8 +94,11 @@ list<Education> GradeRepository::RemoveGradeFromList(list<Education> grades, cha
 			iTemp = i;
 			grades.erase(iTemp);
 			cout << "ќценки студента были успешно удалены.\n";
+			if (grades.empty())
+			{
+				break;
+			}
 			i = grades.begin();
-			//RemoveGradeFromList(grades, gradebookNum);
 		}
 		if (strcmp(i->GradebookNumber, gradebookNum))
 		{
