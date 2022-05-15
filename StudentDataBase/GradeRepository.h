@@ -17,6 +17,7 @@ public:
 		list<Education> grades, char* gradebookNum);
 	list<Education> GetAllGrades();
 	void RewriteGradeDataBase(list<Education> grades);
+	float GetRatingForOneSession(int sessionNum, Student student);
 	bool StudentExistsByNum(char* gradebookNum, short sessionNum);
 	bool StudentExistsByNum(char* gradebookNum);
 };

@@ -50,6 +50,18 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 6:
 		{
+			char* group = _dataBaseIO.InputGroup();
+			char* gender = _dataBaseIO.InputGender();
+			int sessionNum = _dataBaseIO.InputSessionNumber();
+			list<Student> studentsInGroup = _studentService.GetStudentsByGroupAndGender(group, gender, sessionNum);
+
+			_dataBaseIO.OutPutStudentsInGroupForOneSession(studentsInGroup);
+			cout << "Для продолжения нажмите любую кнопку...\n";
+			getchar();
+			break;
+		}
+		case 7:
+		{
 			cout << "Выход из программы...\n";
 			return;
 		}
@@ -66,7 +78,8 @@ const char** StudentMenu::GetMenuItems()
 		"3. Удалить запись о студенте.",
 		"4. Вывести всех студентов.",
 		"5. Меню оценок.",
-		"6. Выход из программы."
+		"6. Выполнить вариант №54.",
+		"7. Выход из программы."
 	};
 
 	return Menu;

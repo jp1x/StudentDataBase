@@ -21,6 +21,7 @@ public:
     char Group[11];
     char GradebookNumber[8];
     char Gender[8];
+    float AverageMarkForOneSession;
 
     Student() = default;
 
@@ -34,7 +35,8 @@ public:
         char* department,
         char* group,
         char* gradebookNumber,
-        char* gender)
+        char* gender,
+        float averageMarkForOneSession)
     {
         strcpy_s(Surname, surname);
         strcpy_s(Name, name);
@@ -46,6 +48,7 @@ public:
         strcpy_s(Group,  group);
         strcpy_s(GradebookNumber,  gradebookNumber);
         strcpy_s(Gender, gender);
+        AverageMarkForOneSession = averageMarkForOneSession;
     }
 
     Student(const Student& student)
@@ -60,6 +63,7 @@ public:
         strcpy_s(Group, student.Group);
         strcpy_s(GradebookNumber, student.GradebookNumber);
         strcpy_s(Gender, student.Gender);
+        AverageMarkForOneSession = student.AverageMarkForOneSession;
     }
 
     static Student DefaultStudent()
@@ -75,7 +79,8 @@ public:
             nullptr,
             nullptr,
             nullptr,
-            nullptr
+            nullptr,
+            0
         );
 
         return student;

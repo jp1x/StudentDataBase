@@ -12,6 +12,7 @@ class StudentRepository
 private:
 	fstream _dataBase;
 	DataBaseIO _dataBaseIO;
+	GradeRepository _gradeRepository;
 
 public:
 	bool DatabaseExists();
@@ -24,4 +25,6 @@ public:
 	void ReWriteDataBase(list<Student> students);
 	Student GetStudentByNum(char* gradebookNum);
 	bool StudentExistsByNum(char* gradebookNum);
+	list<Student> GetStudentsByGroupAndGenderForOneSession(
+char* group, char* gender, int sessionNum);
 };

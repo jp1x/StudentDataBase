@@ -67,20 +67,11 @@ Student DataBaseIO::InputStudent()
 		department,
 		group,
 		gradebookNumber,
-		gender
+		gender,
+		0
 	);
 	
 	return person;
-}
-
-char gradebookNumber[8];
-char* DataBaseIO::InputGradebookNum()
-{
-	cout << "Введите номер зачетной книжки студента: ";
-	cin.getline(gradebookNumber, 8);
-	BufClean;
-
-	return gradebookNumber;
 }
 
 Education DataBaseIO::InputGrades()
@@ -191,6 +182,35 @@ void DataBaseIO::OutputGrade(list<Education> grades)
 	}
 }
 
+void DataBaseIO::OutPutStudentsInGroupForOneSession(list<Student> studentsInGroup)
+{
+	if (studentsInGroup.empty())
+	{
+		cout << "В нужной группе студентов нужного пола нет.\n";
+		return;
+	}
+	
+	cout << setfill('=') << setw(139) << "=" << "\n";
+	for (const Student& student : studentsInGroup)
+	{
+		cout << '|' << setfill(' ') << setw(19) << left << student.Surname <<
+			'|' << setfill(' ') << setw(19) << left << student.Name <<
+			'|' << setfill(' ') << setw(19) << left << student.Patronymic <<
+			'|' << setfill('0') << setw(2) << right << student.Birthday.day <<
+			"." << setfill('0') << setw(2) << right << student.Birthday.month <<
+			"." << student.Birthday.year <<
+			'|' << setfill(' ') << setw(4) << left << student.UniversityYear <<
+			'|' << setfill(' ') << setw(8) << left << student.Faculty <<
+			'|' << setfill(' ') << setw(6) << left << student.Department <<
+			'|' << setfill(' ') << setw(10) << left << student.Group <<
+			'|' << setfill(' ') << setw(7) << left << student.GradebookNumber <<
+			'|' << setfill(' ') << setw(7) << left << student.Gender << 
+			'|' << "Средний балл: " << setfill(' ') << setw(4) <<
+			student.AverageMarkForOneSession << '|' << "\n";
+		cout << setfill('=') << setw(139) << "=" << "\n";
+	}
+}
+
 void DataBaseIO::PrintMenuItems(const char* menuItems[], size_t length)
 {
 	for (size_t i = 0; i < length; i++)
@@ -214,4 +234,40 @@ int DataBaseIO::InputMenuItemNumber()
 	cin >> number;
 	while (getchar() != '\n');
 	return number;
+}
+
+char gradebookNumber[8];
+char* DataBaseIO::InputGradebookNum()
+{
+	cout << "Введите номер зачетной книжки студента: ";
+	cin.getline(gradebookNumber, 8);
+	BufClean;
+	return gradebookNumber;
+}
+
+char group[11];
+char* DataBaseIO::InputGroup()
+{
+	cout << "Введите группу: ";
+	cin.getline(group, 11);
+	BufClean;
+	return group;
+}
+
+char gender[8];
+char* DataBaseIO::InputGender()
+{
+	cout << "Введите пол: ";
+	cin.getline(gender, 8);
+	BufClean;
+	return gender;
+}
+
+int DataBaseIO::InputSessionNumber()
+{
+	int sessionNum;
+	cout << "Введите номер сессии: ";
+	cin >> sessionNum;
+	while (getchar() != '\n');
+	return sessionNum;
 }

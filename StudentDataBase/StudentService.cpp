@@ -126,3 +126,21 @@ list<Student> StudentService::GetAllStudents()
 {
 	return _studentRepository.GetAllStudents();
 }
+
+void StudentService::Task54()
+{
+
+}
+
+list<Student> StudentService::GetStudentsByGroupAndGender(
+	char* group, char* gender, int sessionNum)
+{
+	return _studentRepository.GetStudentsByGroupAndGenderForOneSession(
+		group, gender, sessionNum);
+}
+
+//list<Student> SortStudentsByAverageMark(list<Student> students, int size)
+//{
+//	int temp = 0;
+//
+//}

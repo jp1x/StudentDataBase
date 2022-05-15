@@ -145,3 +145,23 @@ void StudentRepository::ReWriteDataBase(list<Student> students)
 	}
 	_dataBase.close();
 }
+
+list<Student> StudentRepository::GetStudentsByGroupAndGenderForOneSession(
+	char* group, char* gender, int sessionNum)
+{
+	list<Student> students = GetAllStudents();
+	list<Student> studentsInGroup;
+
+	for (Student& student : students)
+	{
+		if (!strcmp(student.Group, group))
+		{
+			if (!strcmp(student.Gender, gender))
+			{
+				student.AverageMarkForOneSession = _gradeRepository.GetRatingForOneSession(sessionNum, student);
+				studentsInGroup.push_back(student);
+			}
+		}
+	}
+	return studentsInGroup;
+}

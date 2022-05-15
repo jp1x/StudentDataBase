@@ -8,5 +8,5 @@ int main()
     SetConsoleOutputCP(1251);
 
     StudentMenu menu;
-    menu.UseMenu(menu.GetMenuItems(), 6);
+    menu.UseMenu(menu.GetMenuItems(), 7);
 }
