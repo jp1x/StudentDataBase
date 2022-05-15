@@ -103,7 +103,7 @@ list<Education> GradeRepository::RemoveGradeFromList(list<Education> grades, cha
 		if (strcmp(i->GradebookNumber, gradebookNum))
 		{
 			Education iEnd = grades.back();
-			if (!strcmp(i->GradebookNumber, iEnd.GradebookNumber))
+			if (!strcmp(i->GradebookNumber, iEnd.GradebookNumber) && grades.size() == 1)
 				break;
 			i++;
 		}
