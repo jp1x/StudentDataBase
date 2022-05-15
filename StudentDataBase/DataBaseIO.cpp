@@ -68,6 +68,7 @@ Student DataBaseIO::InputStudent()
 		group,
 		gradebookNumber,
 		gender,
+		0,
 		0
 	);
 	
@@ -96,10 +97,10 @@ Education DataBaseIO::InputGrades()
 		while (getchar() != '\n');
 		BufClean;
 
-		if (!(subjectsAmount < 1 || subjectsAmount > 10))
-			break;
+		if (subjectsAmount < 1 || subjectsAmount > 10)
+			cout << "Неверное количество дисциплин. Макс. количество - 10\n";
 
-		cout << "Неверное количество дисциплин. Макс. количество - 10\n";
+		break;
 	}
 
 	Subject* Subjects = new Subject[subjectsAmount];
@@ -207,6 +208,35 @@ void DataBaseIO::OutPutStudentsInGroupForOneSession(list<Student> studentsInGrou
 			'|' << setfill(' ') << setw(7) << left << student.Gender << 
 			'|' << "Средний балл: " << setfill(' ') << setw(4) <<
 			student.AverageMarkForOneSession << '|' << "\n";
+		cout << setfill('=') << setw(139) << "=" << "\n";
+	}
+}
+
+void DataBaseIO::OutPutStudentsInGroupForAllSessions(list<Student> studentsInGroup)
+{
+	if (studentsInGroup.empty())
+	{
+		cout << "В нужной группе студентов нужного пола нет.\n";
+		return;
+	}
+
+	cout << setfill('=') << setw(139) << "=" << "\n";
+	for (const Student& student : studentsInGroup)
+	{
+		cout << '|' << setfill(' ') << setw(19) << left << student.Surname <<
+			'|' << setfill(' ') << setw(19) << left << student.Name <<
+			'|' << setfill(' ') << setw(19) << left << student.Patronymic <<
+			'|' << setfill('0') << setw(2) << right << student.Birthday.day <<
+			"." << setfill('0') << setw(2) << right << student.Birthday.month <<
+			"." << student.Birthday.year <<
+			'|' << setfill(' ') << setw(4) << left << student.UniversityYear <<
+			'|' << setfill(' ') << setw(8) << left << student.Faculty <<
+			'|' << setfill(' ') << setw(6) << left << student.Department <<
+			'|' << setfill(' ') << setw(10) << left << student.Group <<
+			'|' << setfill(' ') << setw(7) << left << student.GradebookNumber <<
+			'|' << setfill(' ') << setw(7) << left << student.Gender <<
+			'|' << "Средний балл: " << setfill(' ') << setw(4) <<
+			student.AverageMarkForAllSessions << '|' << "\n";
 		cout << setfill('=') << setw(139) << "=" << "\n";
 	}
 }

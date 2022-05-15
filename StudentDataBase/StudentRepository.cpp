@@ -158,7 +158,29 @@ list<Student> StudentRepository::GetStudentsByGroupAndGenderForOneSession(
 		{
 			if (!strcmp(student.Gender, gender))
 			{
-				student.AverageMarkForOneSession = _gradeRepository.GetRatingForOneSession(sessionNum, student);
+				student.AverageMarkForOneSession = _gradeRepository.GetRatingForOneSession(
+					sessionNum, student.GradebookNumber);
+				studentsInGroup.push_back(student);
+			}
+		}
+	}
+	return studentsInGroup;
+}
+
+list<Student> StudentRepository::GetStudentsByGroupAndGenderForAllSessions(
+	char* group, char* gender)
+{
+	list<Student> students = GetAllStudents();
+	list<Student> studentsInGroup;
+
+	for (Student& student : students)
+	{
+		if (!strcmp(student.Group, group))
+		{
+			if (!strcmp(student.Gender, gender))
+			{
+				student.AverageMarkForAllSessions = _gradeRepository.GetRatingForAllSessions(
+					student.GradebookNumber);
 				studentsInGroup.push_back(student);
 			}
 		}

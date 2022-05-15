@@ -130,14 +130,14 @@ void GradeRepository::RewriteGradeDataBase(list<Education> grades)
 	_gradeDataBase.close();
 }
 
-float GradeRepository::GetRatingForOneSession(int sessionNum, Student student)
+float GradeRepository::GetRatingForOneSession(int sessionNum, char* gradebookNum)
 {
 	float averageMark = 0;
 	list<Education> grades = GetAllGrades();
 
 	for (const Education& grade : grades)
 	{
-		if (!strcmp(grade.GradebookNumber, student.GradebookNumber))
+		if (!strcmp(grade.GradebookNumber, gradebookNum))
 		{
 			if (grade.SessionNumber == sessionNum)
 			{
@@ -151,4 +151,26 @@ float GradeRepository::GetRatingForOneSession(int sessionNum, Student student)
 	}
 
 	return averageMark;
+}
+
+float GradeRepository::GetRatingForAllSessions(char* gradebookNumber)
+{
+	float averageMark = 0;
+	int k = 0;
+	list<Education> grades = GetAllGrades();
+
+	for (const Education& grade : grades)
+	{
+		if (!strcmp(grade.GradebookNumber, gradebookNumber))
+		{
+			averageMark += (grade.CountFives(grade) * 5
+				+ grade.CountFours(grade) * 4
+				+ grade.CountThrees(grade) * 3
+				+ grade.CountTwos(grade) * 2)
+				/ (grade.CountMarks(grade));
+			k++;
+		}
+	}
+
+	return averageMark/k;
 }

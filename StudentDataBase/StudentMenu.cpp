@@ -50,14 +50,40 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 6:
 		{
-			char* group = _dataBaseIO.InputGroup();
-			char* gender = _dataBaseIO.InputGender();
-			int sessionNum = _dataBaseIO.InputSessionNumber();
-			list<Student> studentsInGroup = _studentService.GetStudentsByGroupAndGender(group, gender, sessionNum);
+			cout << "1. Выполнить сортировку за все сессии.\n";
+			cout << "2. Выполнить сортировку за конкретную сессию.\n";
+			switch (_dataBaseIO.InputMenuItemNumber())
+			{
+			case 1:
+			{
+				system("cls");
+				cin.clear();
+				char* group = _dataBaseIO.InputGroup();
+				char* gender = _dataBaseIO.InputGender();
+				list<Student> studentsInGroup = _studentService.GetStudentsByGroupAndGenderForAllSessions(
+					group, gender);
 
-			_dataBaseIO.OutPutStudentsInGroupForOneSession(studentsInGroup);
-			cout << "Для продолжения нажмите любую кнопку...\n";
-			getchar();
+				_dataBaseIO.OutPutStudentsInGroupForAllSessions(studentsInGroup);
+				cout << "Для продолжения нажмите любую кнопку...\n";
+				getchar();
+				break;
+			}
+			case 2:
+			{
+				system("cls");
+				cin.clear();
+				char* group = _dataBaseIO.InputGroup();
+				char* gender = _dataBaseIO.InputGender();
+				int sessionNum = _dataBaseIO.InputSessionNumber();
+				list<Student> studentsInGroup = _studentService.GetStudentsByGroupAndGenderForOneSession(
+					group, gender, sessionNum);
+
+				_dataBaseIO.OutPutStudentsInGroupForOneSession(studentsInGroup);
+				cout << "Для продолжения нажмите любую кнопку...\n";
+				getchar();
+				break;
+			}
+			}
 			break;
 		}
 		case 7:

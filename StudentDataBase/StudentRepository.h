@@ -27,4 +27,6 @@ public:
 	bool StudentExistsByNum(char* gradebookNum);
 	list<Student> GetStudentsByGroupAndGenderForOneSession(
 char* group, char* gender, int sessionNum);
+	list<Student> GetStudentsByGroupAndGenderForAllSessions(
+		char* group, char* gender);
 };

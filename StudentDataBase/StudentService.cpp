@@ -132,15 +132,30 @@ void StudentService::Task54()
 
 }
 
-list<Student> StudentService::GetStudentsByGroupAndGender(
+list<Student> StudentService::GetStudentsByGroupAndGenderForOneSession(
 	char* group, char* gender, int sessionNum)
 {
-	return _studentRepository.GetStudentsByGroupAndGenderForOneSession(
+	list<Student> studentsInGroup = _studentRepository.GetStudentsByGroupAndGenderForOneSession(
 		group, gender, sessionNum);
+
+	studentsInGroup.sort([](const Student& st1, const Student& st2)
+		{
+			return st1.AverageMarkForOneSession > st2.AverageMarkForOneSession;
+		});
+
+	return studentsInGroup;
 }
 
-//list<Student> SortStudentsByAverageMark(list<Student> students, int size)
-//{
-//	int temp = 0;
-//
-//}
+list<Student> StudentService::GetStudentsByGroupAndGenderForAllSessions(
+	char* group, char* gender)
+{
+	list<Student> studentsInGroup = _studentRepository.GetStudentsByGroupAndGenderForAllSessions(
+		group, gender);
+
+	studentsInGroup.sort([](const Student& st1, const Student& st2)
+		{
+			return st1.AverageMarkForAllSessions > st2.AverageMarkForAllSessions;
+		});
+
+	return studentsInGroup;
+}

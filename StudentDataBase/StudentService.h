@@ -16,6 +16,8 @@ public:
 	void DeleteStudent(char* gradebookNum);
 	list<Student> GetAllStudents();
 	void Task54();
-	list<Student> GetStudentsByGroupAndGender(char* group, char* gender, int sessionNum);
-	list<Student> SortStudentsByAverageMark(list<Student> students, int size);
+	list<Student> GetStudentsByGroupAndGenderForOneSession(
+		char* group, char* gender, int sessionNum);
+	list<Student> GetStudentsByGroupAndGenderForAllSessions(
+		char* group, char* gender);
 };
