@@ -41,6 +41,29 @@ bool GradeRepository::StudentExistsByNum(char* gradebookNum, short sessionNum)
 	return exists;
 }
 
+bool GradeRepository::StudentExistsByNum(char* gradebookNum)
+{
+	if (!GradeDatabaseExists())
+		return false;
+
+	Education session;
+	bool exists = false;
+
+	_gradeDataBase.open("Grades.txt", ios::binary | ios::in);
+	while (!_gradeDataBase.eof())
+	{
+		_gradeDataBase.read((char*)&session, sizeof(session));
+		if (!strcmp(session.GradebookNumber, gradebookNum))
+		{
+			exists = true;
+			break;
+		}
+	}
+	_gradeDataBase.close();
+
+	return exists;
+}
+
 list<Education> GradeRepository::GetAllGrades()
 {
 	list<Education> grades;
@@ -58,4 +81,48 @@ list<Education> GradeRepository::GetAllGrades()
 	delete grade;
 
 	return grades;
+}
+
+list<Education> GradeRepository::RemoveGradeFromList(list<Education> grades, char* gradebookNum)
+{
+	list<Education>::iterator i = grades.begin();
+	list<Education>::iterator iTemp = grades.begin();
+	while (i != grades.end())
+	{
+		if (!strcmp(i->GradebookNumber, gradebookNum))
+		{
+			iTemp = i;
+			grades.erase(iTemp);
+			cout << "ќценки студента были успешно удалены.\n";
+			i = grades.begin();
+			//RemoveGradeFromList(grades, gradebookNum);
+		}
+		if (strcmp(i->GradebookNumber, gradebookNum))
+		{
+			Education iEnd = grades.back();
+			if (!strcmp(i->GradebookNumber, iEnd.GradebookNumber))
+				break;
+			i++;
+		}
+	}
+	return grades;
+}
+
+void GradeRepository::DeleteGrade(char* gradebookNum)
+{
+	list<Education> grades = GetAllGrades();
+
+	list<Education> newList = RemoveGradeFromList(grades, gradebookNum);
+
+	RewriteGradeDataBase(newList);
+}
+
+void GradeRepository::RewriteGradeDataBase(list<Education> grades)
+{
+	_gradeDataBase.open("Grades.txt", ios::binary | ios::out | ios::trunc);
+	for (const Education& grade : grades)
+	{
+		_gradeDataBase.write((char*)&grade, sizeof(Education));
+	}
+	_gradeDataBase.close();
 }

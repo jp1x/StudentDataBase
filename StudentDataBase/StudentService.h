@@ -7,6 +7,8 @@ class StudentService
 {
 private:
 	StudentRepository _studentRepository;
+	GradeRepository _gradeRepository;
+	GradeService _gradeService;
 
 public:
 	void AddStudent(Student student);

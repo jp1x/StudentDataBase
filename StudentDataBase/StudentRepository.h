@@ -1,6 +1,8 @@
 #pragma once
 #include "Student.h"
 #include "DataBaseIO.h"
+#include "GradeRepository.h"
+#include "GradeService.h"
 #include <fstream>
 #include <list>
 using namespace std;

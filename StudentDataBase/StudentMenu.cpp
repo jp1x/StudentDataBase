@@ -29,8 +29,8 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 3:
 		{
-			char* gradebookNum = _dataBaseIO.InputGradebookNum();
-			_studentService.DeleteStudent(gradebookNum);
+			char* gradebookNumber = _dataBaseIO.InputGradebookNum();
+			_studentService.DeleteStudent(gradebookNumber);
 			cout << "Для продолжения нажмите любую кнопку...\n";
 			getchar();
 			break;

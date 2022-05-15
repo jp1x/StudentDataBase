@@ -101,6 +101,19 @@ void StudentService::DeleteStudent(char* gradebookNum)
 		return;
 	}
 
+	bool gradeDatabaseExists = _gradeRepository.GradeDatabaseExists();
+	if (!gradeDatabaseExists)
+	{
+		cout << "База данных с оценками ещё не создана.\n";
+	}
+
+	bool studentGradesExists = _gradeRepository.StudentExistsByNum(gradebookNum);
+	if (!studentGradesExists)
+	{
+		cout << "У студента с шифром " << gradebookNum << " не было оценок.\n";
+	}
+
+	_gradeRepository.DeleteGrade(gradebookNum);
 	_studentRepository.DeleteStudent(gradebookNum);
 }
 

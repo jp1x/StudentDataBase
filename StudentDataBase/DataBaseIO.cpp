@@ -73,9 +73,9 @@ Student DataBaseIO::InputStudent()
 	return person;
 }
 
+char gradebookNumber[8];
 char* DataBaseIO::InputGradebookNum()
 {
-	char gradebookNumber[8];
 	cout << "Введите номер зачетной книжки студента: ";
 	cin.getline(gradebookNumber, 8);
 	BufClean;
@@ -166,7 +166,7 @@ void DataBaseIO::OutputStudent(list<Student> students)
 
 void DataBaseIO::OutputGrade(list<Education> grades)
 {
-	cout << setfill('=') << setw(69) << "=" << "\n";
+	cout << setfill('=') << setw(70) << "=" << "\n";
 	for (const Education& grade : grades)
 	{
 		cout << '|' << setfill(' ') << setw(8) << left << grade.GradebookNumber <<
@@ -175,9 +175,9 @@ void DataBaseIO::OutputGrade(list<Education> grades)
 			'|' << "[4]: " << setfill(' ') << setw(2) << left << grade.CountFours(grade) <<
 			'|' << "[3]: " << setfill(' ') << setw(2) << left << grade.CountThrees(grade) <<
 			'|' << "[2]: " << setfill(' ') << setw(2) << left << grade.CountTwos(grade) <<
-			'|' << "Средний балл: " << setfill(' ') << setw(3) << left <<
+			'|' << "Средний балл: " << setfill(' ') << setw(4) << left <<
 			grade.AverageMark(grade) << '|' << "\n";
-		cout << setfill('=') << setw(69) << "=" << "\n";
+		cout << setfill('=') << setw(70) << "=" << "\n";
 	}
 }
 

@@ -272,6 +272,6 @@ public:
         float averageMark = 0;
         averageMark = (CountFives(session) * 5 + CountFours(session) * 4
             + CountThrees(session) * 3 + CountTwos(session) * 2) / (CountMarks(session));
-        return averageMark;
+        return round(averageMark*100)/100;
     }
 };
