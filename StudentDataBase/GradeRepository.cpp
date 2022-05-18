@@ -156,13 +156,14 @@ float GradeRepository::GetRatingForOneSession(int sessionNum, char* gradebookNum
 float GradeRepository::GetRatingForAllSessions(char* gradebookNumber)
 {
 	float averageMark = 0;
-	int k = 0;
+	int k = 1;
 	list<Education> grades = GetAllGrades();
 
 	for (const Education& grade : grades)
 	{
 		if (!strcmp(grade.GradebookNumber, gradebookNumber))
 		{
+			if (grade.CountMarks(grade) != 0)
 			averageMark += (grade.CountFives(grade) * 5
 				+ grade.CountFours(grade) * 4
 				+ grade.CountThrees(grade) * 3
@@ -171,6 +172,8 @@ float GradeRepository::GetRatingForAllSessions(char* gradebookNumber)
 			k++;
 		}
 	}
-
+	
+	if (k != 1)
+		k -= 1;
 	return averageMark/k;
 }
