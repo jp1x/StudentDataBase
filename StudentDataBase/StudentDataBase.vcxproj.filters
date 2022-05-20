@@ -39,6 +39,9 @@
     <ClCompile Include="GradeMenu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="StudentChangeMenu.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBaseIO.h">
@@ -69,6 +72,9 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="GradeMenu.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentChangeMenu.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

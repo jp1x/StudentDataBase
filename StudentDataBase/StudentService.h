@@ -14,6 +14,8 @@ public:
 	void AddStudent(Student student);
 	//void UpdateStudent(list<Student> students);
 	void DeleteStudent(char* gradebookNum);
+	bool StudentExistsByNum(char* gradebookNum);
+	Student GetStudentByNum(char* gradebookNum);
 	list<Student> GetAllStudents();
 	void Task54();
 	list<Student> GetStudentsByGroupAndGenderForOneSession(

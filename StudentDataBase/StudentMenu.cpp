@@ -23,8 +23,15 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 2:
 		{
-			char* gradebookNum = _dataBaseIO.InputGradebookNum();
-			system("cls");
+			char* gradebookNumber = _dataBaseIO.InputGradebookNum();
+			if (!_studentService.StudentExistsByNum(gradebookNumber))
+			{
+				cout << "Студента с шифром " << gradebookNumber << " не существует.\n";
+				break;
+			}
+
+			StudentChangeMenu studentChangeMenu(gradebookNumber);
+			studentChangeMenu.UseMenu(studentChangeMenu.GetMenuItems(), 13);
 			break;
 		}
 		case 3:
@@ -110,25 +117,3 @@ const char** StudentMenu::GetMenuItems()
 
 	return Menu;
 }
-
-
-
-//const char** StudentMenu::GetChangeMenuItems()
-//{
-//	static const char* Changemenu[] =
-//	{
-//		"1. Фамилия",
-//		"2. Имя",
-//		"3. Отчество",
-//		"4. Дата рождения",
-//		"5. Год поступления",
-//		"6. Факультет",
-//		"7. Кфаедра",
-//		"8. Группа",
-//		"9. Номер зачётной книжки",
-//		"10. Пол",
-//		"11. Назад"
-//	};
-//
-//	return Changemenu;
-//}

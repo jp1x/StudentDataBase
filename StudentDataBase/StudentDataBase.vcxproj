@@ -24,6 +24,7 @@
     <ClCompile Include="GradeRepository.cpp" />
     <ClCompile Include="GradeService.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="StudentChangeMenu.cpp" />
     <ClCompile Include="StudentMenu.cpp" />
     <ClCompile Include="StudentRepository.cpp" />
     <ClCompile Include="StudentService.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="GradeService.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentChangeMenu.h" />
     <ClInclude Include="StudentMenu.h" />
     <ClInclude Include="StudentRepository.h" />
     <ClInclude Include="StudentService.h" />

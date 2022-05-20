@@ -257,6 +257,14 @@ void DataBaseIO::PrintGradeMenuItems(const char* gradeMenuItems[], size_t length
 	}
 }
 
+void DataBaseIO::PrintChangeMenuItems(const char* changeMenuItems[], size_t length)
+{
+	for (size_t i = 0; i < length; i++)
+	{
+		cout << changeMenuItems[i] << "\n";
+	}
+}
+
 int DataBaseIO::InputMenuItemNumber()
 {
 	int number;

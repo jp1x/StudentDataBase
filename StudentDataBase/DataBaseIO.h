@@ -17,6 +17,7 @@ public:
 	void OutPutStudentsInGroupForAllSessions(list<Student> studentsInGroup);
 	void PrintMenuItems(const char* menuItems[], size_t length);
 	void PrintGradeMenuItems(const char* gradeMenuItems[], size_t length);
+	void PrintChangeMenuItems(const char* gradeMenuItems[], size_t length);
 	int InputMenuItemNumber();
 	char* InputGroup();
 	char* InputGender();

@@ -4,6 +4,15 @@ using namespace std;
 
 void StudentService::AddStudent(Student student)
 {
+	//TODO
+	//Создать класс StudentValidator
+	//Вынести туда проверки всех полей студента
+	//Возвращает bool
+	
+	//if (!проверка_нейм)
+	//	return;
+	//заменить провевки в сервисе и сделать проверки в StudentChangeMenu
+
 	bool studentExists = _studentRepository.StudentExistsByNum(student.GradebookNumber);
 	if (studentExists)
 	{
@@ -117,10 +126,20 @@ void StudentService::DeleteStudent(char* gradebookNum)
 	_studentRepository.DeleteStudent(gradebookNum);
 }
 
+bool StudentService::StudentExistsByNum(char* gradebookNum)
+{
+	return _studentRepository.StudentExistsByNum(gradebookNum);
+}
+
 //void StudentService::UpdateStudent(list<Student> students)
 //{
 //	_studentRepository.UpdateStudent(students);
 //}
+
+Student StudentService::GetStudentByNum(char* gradebookNum)
+{
+	return _studentRepository.GetStudentByNum(gradebookNum);
+}
 
 list<Student> StudentService::GetAllStudents()
 {
