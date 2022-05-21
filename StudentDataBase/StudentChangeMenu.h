@@ -1,13 +1,15 @@
 #pragma once
 #include <array>
-#include "StudentService.h"
 #include "Menu.h"
+#include "StudentService.h"
+#include "StudentValidator.h"
 
 class StudentChangeMenu : public Menu
 {
 private:
 	Student* _student;
-	char* _SourceGradebookNumber;
+	char _sourceGradebookNumber[8];
+	StudentValidator _studentValidator;
 
 public:
 	void UseMenu(const char* menuItems[], size_t length);
@@ -15,7 +17,7 @@ public:
 
 	StudentChangeMenu(char* gradebookNum)
 	{
-		_SourceGradebookNumber = gradebookNum;
+		strcpy_s(_sourceGradebookNumber, gradebookNum);
 		_student = new Student(_studentService.GetStudentByNum(gradebookNum));
 	}
 

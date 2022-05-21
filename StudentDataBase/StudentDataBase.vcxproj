@@ -28,6 +28,7 @@
     <ClCompile Include="StudentMenu.cpp" />
     <ClCompile Include="StudentRepository.cpp" />
     <ClCompile Include="StudentService.cpp" />
+    <ClCompile Include="StudentValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBaseIO.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="StudentMenu.h" />
     <ClInclude Include="StudentRepository.h" />
     <ClInclude Include="StudentService.h" />
+    <ClInclude Include="StudentValidator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -257,9 +257,32 @@ void DataBaseIO::PrintGradeMenuItems(const char* gradeMenuItems[], size_t length
 	}
 }
 
-void DataBaseIO::PrintChangeMenuItems(const char* changeMenuItems[], size_t length)
+void DataBaseIO::PrintChangeMenuItems(const char* changeMenuItems[], size_t length, Student student)
 {
-	for (size_t i = 0; i < length; i++)
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[0] << ' ' << student.Surname << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[1] << ' ' << student.Name << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[2] << ' ' << student.Patronymic << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[3] << ' ' << setfill('0') << setw(2) <<
+		right << student.Birthday.day << "." << setfill('0') <<
+		setw(2) << right << student.Birthday.month << "." <<
+		student.Birthday.year << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[4] << ' ' << student.UniversityYear << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[5] << ' ' << student.Faculty << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[6] << ' ' << student.Department << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[7] << ' ' << student.Group << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[8] << ' ' << student.GradebookNumber << "\n";
+	cout << setfill(' ') << setw(30) << left <<
+		changeMenuItems[9] << ' ' << student.Gender << "\n";
+	for (size_t i = 10; i < 13; i++)
 	{
 		cout << changeMenuItems[i] << "\n";
 	}
@@ -274,13 +297,67 @@ int DataBaseIO::InputMenuItemNumber()
 	return number;
 }
 
-char gradebookNumber[8];
-char* DataBaseIO::InputGradebookNum()
+char surname[20];
+char* DataBaseIO::InputSurname()
 {
-	cout << "¬ведите номер зачетной книжки студента: ";
-	cin.getline(gradebookNumber, 8);
+	cout << "¬ведите фамилию: ";
+	cin.getline(surname, 20);
 	BufClean;
-	return gradebookNumber;
+	return surname;
+}
+
+char name[20];
+char* DataBaseIO::InputName()
+{
+	cout << "¬ведите им€: ";
+	cin.getline(name, 20);
+	BufClean;
+	return name;
+}
+
+char patronymic[20];
+char* DataBaseIO::InputPatronymic()
+{
+	cout << "¬ведите отчество: ";
+	cin.getline(patronymic, 20);
+	BufClean;
+	return patronymic;
+}
+
+Date DataBaseIO::InputDate()
+{
+	Date birthday;
+	cout << "¬ведите дату рождени€: ";
+	cin >> birthday.day >> birthday.month >> birthday.year;
+	BufClean;
+	return birthday;
+}
+
+short DataBaseIO::InputUniversityYear()
+{
+	short universityYear;
+	cout << "¬ведите год поступлени€: ";
+	cin >> universityYear;
+	BufClean;
+	return universityYear;
+}
+
+char faculty[9];
+char* DataBaseIO::InputFaculty()
+{
+	cout << "¬ведите факультет: ";
+	cin.getline(faculty, 9);
+	BufClean;
+	return faculty;
+}
+
+char department[7];
+char* DataBaseIO::InputDepartment()
+{
+	cout << "¬ведите кафедру: ";
+	cin.getline(department, 7);
+	BufClean;
+	return department;
 }
 
 char group[11];
@@ -290,6 +367,15 @@ char* DataBaseIO::InputGroup()
 	cin.getline(group, 11);
 	BufClean;
 	return group;
+}
+
+char gradebookNumber[8];
+char* DataBaseIO::InputGradebookNumber()
+{
+	cout << "¬ведите номер зачетной книжки студента: ";
+	cin.getline(gradebookNumber, 8);
+	BufClean;
+	return gradebookNumber;
 }
 
 char gender[8];

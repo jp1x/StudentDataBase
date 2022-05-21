@@ -17,7 +17,7 @@ private:
 public:
 	bool DatabaseExists();
 	void AddStudent(Student student);
-	//void UpdateStudent(list<Student> students);
+	void UpdateStudent(Student student, char* gradebookNum);
 	void DeleteStudent(char* gradebookNum);
 	list<Student> RemoveStudentFromList(
 		list<Student> students, char* gradebookNum);
@@ -26,7 +26,7 @@ public:
 	Student GetStudentByNum(char* gradebookNum);
 	bool StudentExistsByNum(char* gradebookNum);
 	list<Student> GetStudentsByGroupAndGenderForOneSession(
-char* group, char* gender, int sessionNum);
+		char* group, char* gender, int sessionNum);
 	list<Student> GetStudentsByGroupAndGenderForAllSessions(
 		char* group, char* gender);
 };

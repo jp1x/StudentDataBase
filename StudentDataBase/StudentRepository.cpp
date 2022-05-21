@@ -37,32 +37,28 @@ void StudentRepository::AddStudent(Student student)
 	cout << "Студент был успешно добавлен.\n";
 }
 
-//void StudentRepository::UpdateStudent(list<Student> students)
-//{
-//	if (!DatabaseExists())
-//	{
-//		cout << "База данных ещё не создана.\n";
-//		return;
-//	}
-//
-//	char gradebookNum[8];
-//	cout << "Введите шифр студента, которого хотите обновить: ";
-//	cin.getline(gradebookNum, 8);
-//	cin.clear();
-//	cin.ignore(cin.rdbuf()->in_avail());
-//	_flushall();
-//
-//	list<Student> newList;
-//	newList = GetNewList(students, gradebookNum);
-//
-//	Student newStudent = _dataBaseIO.InputStudent();
-//
-//	newList.push_back(newStudent);
-//
-//	ReWriteDataBase(newList);
-//
-//	cout << "Студент был успешно изменён.\n";
-//}
+void StudentRepository::UpdateStudent(Student student_, char* gradebookNum)
+{
+	if (!DatabaseExists())
+	{
+		cout << "База данных ещё не создана.\n";
+		return;
+	}
+
+	list<Student> students = GetAllStudents();
+
+	for (Student& student : students)
+	{
+		if (!strcmp(student.GradebookNumber, gradebookNum))
+		{
+			student = student_;
+		}
+	}
+
+	ReWriteDataBase(students);
+
+	cout << "Студент был успешно изменён.\n";
+}
 
 list<Student> StudentRepository::GetAllStudents()
 {

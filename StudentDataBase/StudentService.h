@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Student.h"
+#include "StudentValidator.h"
 #include "StudentRepository.h"
 
 class StudentService
@@ -8,16 +9,16 @@ class StudentService
 private:
 	StudentRepository _studentRepository;
 	GradeRepository _gradeRepository;
+	StudentValidator _studentValidator;
 	GradeService _gradeService;
 
 public:
 	void AddStudent(Student student);
-	//void UpdateStudent(list<Student> students);
+	void UpdateStudent(Student student, char* gradebookNum);
 	void DeleteStudent(char* gradebookNum);
 	bool StudentExistsByNum(char* gradebookNum);
 	Student GetStudentByNum(char* gradebookNum);
 	list<Student> GetAllStudents();
-	void Task54();
 	list<Student> GetStudentsByGroupAndGenderForOneSession(
 		char* group, char* gender, int sessionNum);
 	list<Student> GetStudentsByGroupAndGenderForAllSessions(

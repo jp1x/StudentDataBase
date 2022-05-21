@@ -13,83 +13,38 @@ void StudentService::AddStudent(Student student)
 	//	return;
 	//заменить провевки в сервисе и сделать проверки в StudentChangeMenu
 
-	bool studentExists = _studentRepository.StudentExistsByNum(student.GradebookNumber);
-	if (studentExists)
-	{
-		cout << "Студент с шифром " << student.GradebookNumber << " уже существует.\n";
+	if (_studentValidator.StudentExistsByNum(student.GradebookNumber))
 		return;
-	}
 
-	bool dateIsValid = Date::DateIsValid(student.Birthday);
-	if (!dateIsValid)
-	{
-		cout << "Некорректная дата рождения.\n";
+	if (!_studentValidator.DateIsValid(student.Birthday))
 		return;
-	}
 
-	bool uniYearIsValid = Student::UniversityYearIsValid(student.UniversityYear, student.Birthday);
-	if (!uniYearIsValid)
-	{
-		cout << "Студент с возрастом менее 16 лет не может поступить в ВУЗ.\n";
-		cout << "Или такой год для поступления ещё не наступил.\n";
+	if (!_studentValidator.UnivesityYearIsValid(student.UniversityYear, student.Birthday))
 		return;
-	}
 
-	bool surnameIsValid = student.InitialsAreValid(student.Surname);
-	if (!surnameIsValid)
-	{
-		cout << "Фамилия студента имеет запрещенные символы.\n";
+	if (!_studentValidator.SurnameIsValid(student.Surname))
 		return;
-	}
 
-	bool nameIsValid = student.InitialsAreValid(student.Name);
-	if (!nameIsValid)
-	{
-		cout << "Имя студента имеет запрещенные символы.\n";
+	if (!_studentValidator.NameIsValid(student.Name))
 		return;
-	}
 
-	bool patronymicIsValid = student.InitialsAreValid(student.Patronymic);
-	if (!patronymicIsValid)
-	{
-		cout << "Отчество студента имеет запрещенные символы.\n";
+	if (!_studentValidator.PatronymicIsValid(student.Patronymic))
 		return;
-	}
 
-	bool facultyIsValid = student.CharFieldIsValid(student.Faculty, 9);
-	if (!facultyIsValid)
-	{
-		cout << "Факультет студента имеет запрещенные символы.\n";
+	if (!_studentValidator.FacultyIsValid(student.Faculty))
 		return;
-	}
 
-	bool departmentIsValid = student.CharFieldIsValid(student.Department, 7);
-	if (!departmentIsValid)
-	{
-		cout << "Кафедра студента имеет запрещенные символы.\n";
+	if (!_studentValidator.DeartmentIsValid(student.Department))
 		return;
-	}
 
-	bool groupIsValid = student.CharFieldIsValid(student.Group, 11);
-	if (!groupIsValid)
-	{
-		cout << "Группа студента имеет запрещенные символы.\n";
+	if (!_studentValidator.GroupIsValid(student.Group))
 		return;
-	}
 
-	bool gradebookIsValid = student.CharFieldIsValid(student.GradebookNumber, 8);
-	if (!gradebookIsValid)
-	{
-		cout << "Шифр студента имеет запрещенные символы.\n";
+	if (!_studentValidator.GradebookNumberIsValid(student.GradebookNumber))
 		return;
-	}
 
-	bool genderIsValid = student.CharFieldIsValid(student.Gender, 8);
-	if (!genderIsValid)
-	{
-		cout << "Пол студента имеет запрещенные символы.\n";
+	if (!_studentValidator.GenderIsValid(student.Gender))
 		return;
-	}
 
 	_studentRepository.AddStudent(student);
 }
@@ -131,10 +86,10 @@ bool StudentService::StudentExistsByNum(char* gradebookNum)
 	return _studentRepository.StudentExistsByNum(gradebookNum);
 }
 
-//void StudentService::UpdateStudent(list<Student> students)
-//{
-//	_studentRepository.UpdateStudent(students);
-//}
+void StudentService::UpdateStudent(Student student, char* gradebookNum)
+{
+	_studentRepository.UpdateStudent(student, gradebookNum);
+}
 
 Student StudentService::GetStudentByNum(char* gradebookNum)
 {
@@ -144,11 +99,6 @@ Student StudentService::GetStudentByNum(char* gradebookNum)
 list<Student> StudentService::GetAllStudents()
 {
 	return _studentRepository.GetAllStudents();
-}
-
-void StudentService::Task54()
-{
-
 }
 
 list<Student> StudentService::GetStudentsByGroupAndGenderForOneSession(

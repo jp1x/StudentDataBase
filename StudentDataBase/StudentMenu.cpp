@@ -18,15 +18,17 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 			Student student = _dataBaseIO.InputStudent();
 			_studentService.AddStudent(student);
 			cout << "Для продолжения нажмите любую кнопку...\n";
-			getchar();
+			(void)getchar();
 			break;
 		}
 		case 2:
 		{
-			char* gradebookNumber = _dataBaseIO.InputGradebookNum();
+			char* gradebookNumber = _dataBaseIO.InputGradebookNumber();
 			if (!_studentService.StudentExistsByNum(gradebookNumber))
 			{
 				cout << "Студента с шифром " << gradebookNumber << " не существует.\n";
+				cout << "Для продолжения нажмите любую кнопку...\n";
+				(void)getchar();
 				break;
 			}
 
@@ -36,10 +38,10 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 3:
 		{
-			char* gradebookNumber = _dataBaseIO.InputGradebookNum();
+			char* gradebookNumber = _dataBaseIO.InputGradebookNumber();
 			_studentService.DeleteStudent(gradebookNumber);
 			cout << "Для продолжения нажмите любую кнопку...\n";
-			getchar();
+			(void)getchar();
 			break;
 		}
 		case 4:
@@ -47,7 +49,7 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 			list<Student> students = _studentService.GetAllStudents();
 			_dataBaseIO.OutputStudent(students);
 			cout << "Для продолжения нажмите любую кнопку...\n";
-			getchar();
+			(void)getchar();
 			break;
 		}
 		case 5:
@@ -72,7 +74,7 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 
 				_dataBaseIO.OutPutStudentsInGroupForAllSessions(studentsInGroup);
 				cout << "Для продолжения нажмите любую кнопку...\n";
-				getchar();
+				(void)getchar();
 				break;
 			}
 			case 2:
@@ -87,7 +89,7 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 
 				_dataBaseIO.OutPutStudentsInGroupForOneSession(studentsInGroup);
 				cout << "Для продолжения нажмите любую кнопку...\n";
-				getchar();
+				(void)getchar();
 				break;
 			}
 			}

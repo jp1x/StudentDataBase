@@ -18,7 +18,7 @@ void GradeMenu::UseMenu(const char* gradeMenuItems[], size_t length)
 			Education session = _dataBaseIO.InputGrades();
 			_gradeService.AddGrade(session);
 			cout << "Для продолжения нажмите любую кнопку...\n";
-			getchar();
+			(void)getchar();
 			break;
 		}
 		case 2:
@@ -31,7 +31,7 @@ void GradeMenu::UseMenu(const char* gradeMenuItems[], size_t length)
 			list<Education> grades = _gradeService.GetAllGrades();
 			_dataBaseIO.OutputGrade(grades);
 			cout << "Для продолжения нажмите любую кнопку...\n";
-			getchar();
+			(void)getchar();
 			break;
 		}
 		case 4:

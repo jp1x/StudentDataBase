@@ -9,7 +9,16 @@ class DataBaseIO
 {
 public:
 	Student InputStudent();
-	char* InputGradebookNum();
+	char* InputSurname();
+	char* InputName();
+	char* InputPatronymic();
+	Date InputDate();
+	short InputUniversityYear();
+	char* InputFaculty();
+	char* InputDepartment();
+	char* InputGroup();
+	char* InputGradebookNumber();
+	char* InputGender();
 	Education InputGrades();
 	void OutputStudent(list<Student> students);
 	void OutputGrade(list<Education> grades);
@@ -17,9 +26,7 @@ public:
 	void OutPutStudentsInGroupForAllSessions(list<Student> studentsInGroup);
 	void PrintMenuItems(const char* menuItems[], size_t length);
 	void PrintGradeMenuItems(const char* gradeMenuItems[], size_t length);
-	void PrintChangeMenuItems(const char* gradeMenuItems[], size_t length);
+	void PrintChangeMenuItems(const char* gradeMenuItems[], size_t length, Student student);
 	int InputMenuItemNumber();
-	char* InputGroup();
-	char* InputGender();
 	int InputSessionNumber();
 };

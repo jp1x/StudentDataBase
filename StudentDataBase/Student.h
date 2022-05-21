@@ -4,12 +4,6 @@
 
 class Student
 {
-    const char* incorrectSimbols[27] = { "/", ".", ",", "[", "]", "(", ")",
-        "{", "}", "`", "!", "@", "#", "¹", "$", ";", "%", "^", ":", "&",
-        "?", "*", "|", "<", ">", "+", "=" };
-    const char* incorrectSimbolsAndNums[37] = { "/", ".", ",", "[", "]", "(", ")",
-        "{", "}", "`", "!", "@", "#", "¹", "$", ";", "%", "^", ":", "&",
-        "?", "*", "|", "<", ">", "+", "=", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 public:
     char Surname[20];
     char Name[20];
@@ -105,36 +99,7 @@ public:
 
         return true;
     }
-
-    bool InitialsAreValid(char* value)
-    {
-        for (short i = 0; i < 20; i++)
-        {
-            for (short j = 0; j < 37; j++)
-            {
-                if (value[i] == *incorrectSimbolsAndNums[j])
-                    return false;
-            }
-        }
-
-        return true;
-    }
-
-    bool CharFieldIsValid(char* value, short length)
-    {
-        for (short i = 0; i < length; i++)
-        {
-            for (short j = 0; j < 27; j++)
-            {
-                if (value[i] == *incorrectSimbols[j])
-                    return false;
-            }
-        }
-
-        return true;
-    }
     
-
     bool operator == (const Student other)
     {
         return !strcmp(this->Name, other.Name) &&
