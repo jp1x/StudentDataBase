@@ -77,7 +77,7 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 5:
 		{
-			gradeMenu.UseMenu(gradeMenu.GetMenuItems(), 4);
+			gradeMenu.UseMenu(gradeMenu.GetMenuItems(), 5);
 			break;
 		}
 		case 6:

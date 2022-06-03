@@ -48,6 +48,11 @@ void GradeService::AddGrade(Education session)
 	_gradeRepository.AddGrade(session);
 }
 
+void GradeService::DeleteGrade(char* gradebookNum, int sessionNum)
+{
+	_gradeRepository.DeleteGrade(gradebookNum, sessionNum);
+}
+
 list<Education> GradeService::GetAllGrades()
 {
 	return _gradeRepository.GetAllGrades();

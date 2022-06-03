@@ -111,11 +111,47 @@ list<Education> GradeRepository::RemoveGradeFromList(list<Education> grades, cha
 	return grades;
 }
 
+list<Education> GradeRepository::RemoveGradeFromList(
+	list<Education> grades, char* gradebookNum, int sessionNum)
+{
+	list<Education>::iterator i = grades.begin();
+	while (i != grades.end())
+	{
+		if (!strcmp(i->GradebookNumber, gradebookNum))
+		{
+			if (i->SessionNumber == sessionNum)
+			{
+				grades.erase(i);
+				cout << "ќценки студента были успешно удалены.\n";
+				return grades;
+			}
+		}
+		i++;
+	}
+	cout << "ќценок за " << sessionNum << " сессию у студента с шифром " << gradebookNum << " нет.\n";
+	return grades;
+}
+
 void GradeRepository::DeleteGrade(char* gradebookNum)
 {
 	list<Education> grades = GetAllGrades();
 
 	list<Education> newList = RemoveGradeFromList(grades, gradebookNum);
+
+	RewriteGradeDataBase(newList);
+}
+
+void GradeRepository::DeleteGrade(char* gradebookNum, int sessionNum)
+{
+	if (!GradeDatabaseExists())
+	{
+		cout << "Ѕаза данных с оценками ещЄ не создана.\n";
+		return;
+	}
+
+	list<Education> grades = GetAllGrades();
+
+	list<Education> newList = RemoveGradeFromList(grades, gradebookNum, sessionNum);
 
 	RewriteGradeDataBase(newList);
 }
