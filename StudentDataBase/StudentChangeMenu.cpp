@@ -175,10 +175,6 @@ void StudentChangeMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 11:
 		{
-
-		}
-		case 12:
-		{
 			cout << "Вы уверены, что хотите сохранить изменения?\n";
 			cout << "1. Да\n";
 			cout << "2. Нет\n";
@@ -199,7 +195,7 @@ void StudentChangeMenu::UseMenu(const char* menuItems[], size_t length)
 			}
 			break;
 		}
-		case 13:
+		case 12:
 		{
 			cout << "Вы уверены, что хотите сбросить изменения?\n";
 			cout << "1. Да\n";
@@ -238,9 +234,8 @@ const char** StudentChangeMenu::GetMenuItems()
 		"8. Группа",
 		"9. Номер зачётной книжки",
 		"10. Пол",
-		"11. Меню оценок.",
-		"12. Сохранить.",
-		"13. Не сохранять."
+		"11. Схранить.",
+		"12. Не сохранять."
 	};
 
 	return changeMenu;

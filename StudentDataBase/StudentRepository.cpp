@@ -1,14 +1,14 @@
 #include "StudentRepository.h"
 
-bool StudentRepository::DatabaseExists()
+bool StudentRepository::DatabaseExists(const char* databaseName)
 {
-	ifstream infile("Students.txt");
+	ifstream infile(databaseName);
 	return infile.good();
 }
 
 bool StudentRepository::StudentExistsByNum(char* gradebookNum)
 {
-	if (!DatabaseExists())
+	if (!DatabaseExists("Students.txt"))
 		return false;
 
 	Student student;
@@ -39,7 +39,7 @@ void StudentRepository::AddStudent(Student student)
 
 void StudentRepository::UpdateStudent(Student student_, char* gradebookNum)
 {
-	if (!DatabaseExists())
+	if (!DatabaseExists("Students.txt"))
 	{
 		cout << "База данных ещё не создана.\n";
 		return;
@@ -80,7 +80,7 @@ list<Student> StudentRepository::GetAllStudents()
 
 Student StudentRepository::GetStudentByNum(char* gradebookNum)
 {
-	if (!DatabaseExists())
+	if (!DatabaseExists("Students.txt"))
 		return Student::DefaultStudent();
 
 	Student student;
@@ -119,7 +119,7 @@ list<Student> StudentRepository::RemoveStudentFromList(list<Student> students, c
 
 void StudentRepository::DeleteStudent(char* gradebookNum)
 {
-	if (!DatabaseExists())
+	if (!DatabaseExists("Students.txt"))
 	{
 		cout << "База данных ещё не создана.\n";
 		return;

@@ -4,6 +4,7 @@
 #include "GradeRepository.h"
 #include "GradeService.h"
 #include <fstream>
+#include <time.h>
 #include <list>
 using namespace std;
 
@@ -15,7 +16,7 @@ private:
 	GradeRepository _gradeRepository;
 
 public:
-	bool DatabaseExists();
+	bool DatabaseExists(const char* databaseName);
 	void AddStudent(Student student);
 	void UpdateStudent(Student student, char* gradebookNum);
 	void DeleteStudent(char* gradebookNum);

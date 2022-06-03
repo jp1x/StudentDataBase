@@ -141,11 +141,7 @@ float GradeRepository::GetRatingForOneSession(int sessionNum, char* gradebookNum
 		{
 			if (grade.SessionNumber == sessionNum)
 			{
-				averageMark = (grade.CountFives(grade) * 5
-					+ grade.CountFours(grade) * 4
-					+ grade.CountThrees(grade) * 3
-					+ grade.CountTwos(grade) * 2)
-					/ (grade.CountMarks(grade));
+				averageMark = grade.AverageMark(grade);
 			}
 		}
 	}
@@ -175,5 +171,5 @@ float GradeRepository::GetRatingForAllSessions(char* gradebookNumber)
 	
 	if (k != 1)
 		k -= 1;
-	return averageMark/k;
+	return round((averageMark/k)*100)/100;
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "Date.h"
-#include <cstring>
+#include <string>
 
 class Student
 {

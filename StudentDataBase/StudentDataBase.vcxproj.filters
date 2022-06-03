@@ -45,6 +45,9 @@
     <ClCompile Include="StudentValidator.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Encryptor.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBaseIO.h">
@@ -81,6 +84,9 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="StudentValidator.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Encryptor.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

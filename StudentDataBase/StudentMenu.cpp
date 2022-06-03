@@ -1,7 +1,30 @@
 #include "StudentMenu.h"
+#define BufClean cin.clear(); cin.ignore(cin.rdbuf()->in_avail()); _flushall();
 
 void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 {
+	if (_studentService.DatabaseExists("Students.txt.enc"))
+	{
+		char* password = new char[8];
+		int success;
+		do
+		{
+			cout << "Введите пароль: ";
+			cin >> password;
+			BufClean
+			success = _encryptor.Decrypt(password, "Students.txt");
+		} while (success == 1);
+
+		if (_studentService.DatabaseExists("Grades.txt.enc"))
+			_encryptor.Decrypt(password, "Grades.txt");
+
+		delete[] password;
+	}
+
+	_dataBaseIO.OutputHelloScreen();
+	cout << "Для продолжения нажмите любую кнопку...\n";
+	(void)getchar();
+
 	int menuItemNumber;
 	while (true)
 	{
@@ -33,7 +56,7 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 			}
 
 			StudentChangeMenu studentChangeMenu(gradebookNumber);
-			studentChangeMenu.UseMenu(studentChangeMenu.GetMenuItems(), 13);
+			studentChangeMenu.UseMenu(studentChangeMenu.GetMenuItems(), 12);
 			break;
 		}
 		case 3:
@@ -97,6 +120,14 @@ void StudentMenu::UseMenu(const char* menuItems[], size_t length)
 		}
 		case 7:
 		{
+			char* password = new char[8];
+			cout << "Введите новый пароль: ";
+			cin >> password;
+			BufClean
+			_encryptor.Encrypt(password, "Students.txt");
+			_encryptor.Encrypt(password, "Grades.txt");
+			delete[] password;
+
 			cout << "Выход из программы...\n";
 			return;
 		}

@@ -1,6 +1,11 @@
 #include "GradeService.h"
 #include "GradeRepository.h"
 
+bool GradeService::GradeDatabaseExists()
+{
+	return _gradeRepository.GradeDatabaseExists();
+}
+
 void GradeService::AddGrade(Education session)
 {
 	bool studentExists = _gradeRepository.StudentExistsByNum(session.GradebookNumber, session.SessionNumber);

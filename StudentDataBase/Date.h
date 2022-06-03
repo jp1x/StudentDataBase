@@ -61,14 +61,6 @@ public:
 		return true;
 	}
 
-	Date operator = (const Date& other)
-	{
-		this->day = other.day;
-		this->month = other.month;
-		this->year = other.year;
-		return *this;
-	}
-
 	bool operator == (const Date& other)
 	{
 		return this->day == other.day &&

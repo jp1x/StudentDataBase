@@ -42,7 +42,7 @@ bool StudentValidator::DateIsValid(Date birthday)
 {
 	if (!Date::DateIsValid(birthday))
 	{
-		cout << "Некорректная дата рождения.\n";
+		cout << "Некорректная дата рождения. Границы: 1930-текущая.\n";
 		return false;
 	}
 	return true;
@@ -136,5 +136,13 @@ bool StudentValidator::GenderIsValid(char* gender)
 		cout << "Пол студента имеет запрещенные символы.\n";
 		return false;
 	}
-	return true;
+
+	if (!strcmp("мужской", gender) || !strcmp("Мужской", gender) ||
+		!strcmp("женский", gender) || !strcmp("Женский", gender))
+		return true;
+	else
+	{
+		cout << "Пол студента введён неверно.\n";
+		return false;
+	}
 }

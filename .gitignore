@@ -364,3 +364,19 @@ FodyWeavers.xsd
 
 Students.txt
 Grades.txt
+Students.txt.enc
+Grades.txt.enc
+
+acknowledgements.txt
+authors.txt
+c_rehash.pl
+changes.txt
+faq.txt
+libcrypto-1_1-x64.dll
+libssl-1_1-x64.dll
+license.txt
+news.txt
+readme.txt
+start.bat
+unins000.dat
+unins000.exe

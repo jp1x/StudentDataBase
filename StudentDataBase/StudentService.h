@@ -13,6 +13,7 @@ private:
 	GradeService _gradeService;
 
 public:
+	bool DatabaseExists(const char* databaseName);
 	void AddStudent(Student student);
 	void UpdateStudent(Student student, char* gradebookNum);
 	void DeleteStudent(char* gradebookNum);

@@ -20,6 +20,7 @@ public:
 	char* InputGradebookNumber();
 	char* InputGender();
 	Education InputGrades();
+	void OutputHelloScreen();
 	void OutputStudent(list<Student> students);
 	void OutputGrade(list<Education> grades);
 	void OutPutStudentsInGroupForOneSession(list<Student> studentsInGroup);

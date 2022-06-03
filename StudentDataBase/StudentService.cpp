@@ -2,17 +2,13 @@
 #include "StudentRepository.h"
 using namespace std;
 
+bool StudentService::DatabaseExists(const char* databaseName)
+{
+	return _studentRepository.DatabaseExists(databaseName);
+}
+
 void StudentService::AddStudent(Student student)
 {
-	//TODO
-	//Создать класс StudentValidator
-	//Вынести туда проверки всех полей студента
-	//Возвращает bool
-	
-	//if (!проверка_нейм)
-	//	return;
-	//заменить провевки в сервисе и сделать проверки в StudentChangeMenu
-
 	if (_studentValidator.StudentExistsByNum(student.GradebookNumber))
 		return;
 
@@ -51,7 +47,7 @@ void StudentService::AddStudent(Student student)
 
 void StudentService::DeleteStudent(char* gradebookNum)
 {
-	bool databaseExists = _studentRepository.DatabaseExists();
+	bool databaseExists = _studentRepository.DatabaseExists("Students.txt");
 	if (!databaseExists)
 	{
 		cout << "База данных ещё не создана.\n";

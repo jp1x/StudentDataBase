@@ -27,7 +27,7 @@ Student DataBaseIO::InputStudent()
 	cin.getline(patronymic, 20);
 	BufClean;
 
-	cout << "Дата рождения(DD MM YYYY): ";
+	cout << "Дата рождения(ДД ММ ГГГГ): ";
 	cin >> dd >> mm >> yyyy;
 	Date birthday(dd, mm, yyyy);
 	BufClean;
@@ -52,7 +52,7 @@ Student DataBaseIO::InputStudent()
 	cin.getline(gradebookNumber, 8);
 	BufClean;
 
-	cout << "Пол: ";
+	cout << "Пол (полностью): ";
 	cin.getline(gender, 8);
 	BufClean;
 
@@ -85,22 +85,22 @@ Education DataBaseIO::InputGrades()
 	cin.getline(gradebookNumber, 8);
 	BufClean;
 
-	cout << "Номер сессии: ";
+	cout << "Номер сессии (1-9): ";
 	cin >> sessionNumber;
 	while (getchar() != '\n');
 	BufClean;
 
 	while (true)
 	{
-		cout << "Количество дисциплин: ";
+		cout << "Количество дисциплин (1-10): ";
 		cin >> subjectsAmount;
 		while (getchar() != '\n');
 		BufClean;
 
-		if (subjectsAmount < 1 || subjectsAmount > 10)
-			cout << "Неверное количество дисциплин. Макс. количество - 10\n";
-
-		break;
+		if (subjectsAmount >= 1 && subjectsAmount < 10)
+			break;
+		else
+			cout << "Неверное количество дисциплин.\n";
 	}
 
 	Subject* Subjects = new Subject[subjectsAmount];
@@ -133,6 +133,22 @@ Education DataBaseIO::InputGrades()
 	delete[] Subjects;
 
 	return session;
+}
+
+void DataBaseIO::OutputHelloScreen()
+{
+	cout << "\n\n";
+	cout << "     _____  __              __              __              " << endl;
+	cout << "    / ___/ / /_ __  __ ____/ /___   ____   / /_ _____       " << endl;
+	cout << "    \\__ \\ / __// / / // __  // _ \\ / __ \\ / __// ___/       " << endl;
+	cout << "   ___/ // /_ / /_/ // /_/ //  __// / / // /_ (__  )        " << endl;
+	cout << "  /____/ \\__/ \\__,_/ \\__,_/ \\___//_/ /_/ \\__//____/         " << endl;
+	cout << "      ____          __          __                     " << endl;
+	cout << "     / __ \\ ____ _ / /_ ____ _ / /_   ____ _ _____ ___ " << endl;
+	cout << "    / / / // __ `// __// __ `// __ \\ / __ `// ___// _ \\" << endl;
+	cout << "   / /_/ // /_/ // /_ / /_/ // /_/ // /_/ /(__  )/  __/" << endl;
+	cout << "  /_____/ \\__,_/ \\__/ \\__,_//_.___/ \\__,_//____/ \\___/ " << endl;
+	cout << "\n				  by Maltsev Victor\n\n";
 }
 
 void DataBaseIO::OutputStudent(list<Student> students)
@@ -282,7 +298,7 @@ void DataBaseIO::PrintChangeMenuItems(const char* changeMenuItems[], size_t leng
 		changeMenuItems[8] << ' ' << student.GradebookNumber << "\n";
 	cout << setfill(' ') << setw(30) << left <<
 		changeMenuItems[9] << ' ' << student.Gender << "\n";
-	for (size_t i = 10; i < 13; i++)
+	for (size_t i = 10; i < 12; i++)
 	{
 		cout << changeMenuItems[i] << "\n";
 	}
@@ -327,7 +343,7 @@ char* DataBaseIO::InputPatronymic()
 Date DataBaseIO::InputDate()
 {
 	Date birthday;
-	cout << "Введите дату рождения: ";
+	cout << "Введите дату рождения (ДД ММ ГГГГ): ";
 	cin >> birthday.day >> birthday.month >> birthday.year;
 	BufClean;
 	return birthday;
@@ -381,7 +397,7 @@ char* DataBaseIO::InputGradebookNumber()
 char gender[8];
 char* DataBaseIO::InputGender()
 {
-	cout << "Введите пол: ";
+	cout << "Введите пол (полностью): ";
 	cin.getline(gender, 8);
 	BufClean;
 	return gender;
@@ -390,7 +406,7 @@ char* DataBaseIO::InputGender()
 int DataBaseIO::InputSessionNumber()
 {
 	int sessionNum;
-	cout << "Введите номер сессии: ";
+	cout << "Введите номер сессии (1-9): ";
 	cin >> sessionNum;
 	while (getchar() != '\n');
 	return sessionNum;
